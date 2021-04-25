@@ -28,7 +28,7 @@ Make this Error message function more dynamic in future.*/
 void Error(const std::string lines, const std::string num)
 {
     setConsoleColor(04);
-    cout << "Error.\nException Catched at Line: " << num << endl << "Exceptional Line: " << lines;
+    cout << "Error.\nException Caught at Line: " << num << endl << "Exceptional Line: " << lines;
     setConsoleColor(7);
     exit(0);
 }
