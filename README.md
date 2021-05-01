@@ -1,7 +1,7 @@
 # Glass
 Glass is a programming language made using C++ from scratch, also Glass is highly inspired by C# and Python in terms of syntax.
 
-Glass is an early-stage programming language made for beginners. Currently not much is implemented, however the developement for this language is going really slow.
+Glass is an early-stage programming language made for beginners. Currently not much is implemented, however the developement for this language is going really slow, as I'm still learning C++, using only standard libraries and creating some of the required functions from scratch.
 
 ## Getting Started
 Visual Studio Code is recommended (You can use your desired one), Glass is not officially completed and tested yet, but you can still use it to make some small projects, as of now Glass is only focused to run on Windows Operating System.
@@ -16,7 +16,6 @@ The plan for Glass is to make it a Powerful, High-Level, OOP (Object Oriented Pr
 - Conditional statements (If else statements, Switch statements)
 - Functions
 - Classes
-- Namespaces
 - Graphics rendering
 - GUI application developement support
 - Custom Library building support (By this feature you can make a Glass Library using ".glass" files only, this means you don't need to access the source code everytime you want to create a new Library for Glass)
@@ -27,22 +26,22 @@ And much more...
 ### Requirments
 You need to install the following on your machine.<br />
 - Mingw-w64
-- Python
+- Python 3
 - Git-bash
 - Visual Studio Code (or any other IDE)
 
 ### How To Use
 - To use or test this program, go to "scripts" folder and run "Build.bat" and wait for the program to compile.
-- Then go to "bin" folder and open Command Prompt and type "Glass" and path of your file with it's name.
-- If you haven't created your own then type path of those sample programs with their name, which exixt in "res/sample projects" folder.
+- Then go to "bin" folder and open Command Prompt and type "Glass" and path of your file with it's full name and extension.
+- If you haven't created your own then type path of those sample programs with their full name and extension, which exixt in "res/sample projects" folder.
 - If you want to create your own Glass program then create a new file with an extention of ".glass" without quotes.
-- Then go to Quantum
+- Then open Quantum Text editor and start coding.
 
 ## What is Quantum
-Get Info About [Quantum](https://github.com/Light-Lens/Glass/blob/master/IDE/Quantum/Quantum.md#what-is-quantum).
+Get Info About Quantum [here](https://github.com/Light-Lens/Glass/blob/master/IDE/Quantum/Quantum.md#what-is-quantum).
 
 ## What is CGLass
-Get Info About [CGlass](https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass).
+Get Info About CGlass [here](https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass).
 
 ## Devlog at Trello
 You can get Glass's developement log at: [Trello](https://trello.com/b/xZ02JY5g/glass)<br />
@@ -56,8 +55,8 @@ All code is licensed under an MIT license. This allows you to re-use the code fr
 ## Mentions
 **SPECIAL THANKS** to TheCherno and Nikhil Malankar :)
 
-Their YouTube Channel links:<br />
-[TheCherno](https://www.youtube.com/c/TheChernoProject)<br />
-[Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ)
+Their YouTube Channel links:
+- [TheCherno](https://www.youtube.com/c/TheChernoProject)<br />
+- [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ)
 
-Thanks to everyone for their support :)
+Thanks to everyone for your amazing support! 😃😃😃
