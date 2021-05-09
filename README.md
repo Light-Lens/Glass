@@ -55,7 +55,7 @@ All code is licensed under an MIT license. This allows you to re-use the code fr
 ## Mentions
 **SPECIAL THANKS** to TheCherno and Nikhil Malankar :)
 
-Their YouTube Channel links:
+Links to their YouTube Channel:
 - [TheCherno](https://www.youtube.com/c/TheChernoProject)<br />
 - [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ)
 
