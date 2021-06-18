@@ -22,29 +22,25 @@ The plan for Glass is to make it a Powerful, High-Level, OOP (Object Oriented Pr
 
 And much more...
 
+<hr>
+
+## What is [CGlass](https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass).
+## Check out Glass's [Devlog](https://trello.com/b/xZ02JY5g/glass).
+
+<hr>
+
 ## Instructions
 ### Requirments
 You need to install the following on your machine.<br />
 - Mingw-w64
 - Python 3
-- Git-bash
 - Visual Studio Code (or any other IDE)
 
 ### How To Use
-- To use or test this program, go to "scripts" folder and run "Build.bat" and wait for the program to compile.
-- Then go to "bin" folder and open Command Prompt and type "Glass" and path of your file with it's full name and extension.
-- If you haven't created your own then type path of those sample programs with their full name and extension, which exixt in "res/sample projects" folder.
-- If you want to create your own Glass program then create a new file with an extention of ".glass" without quotes.
-- Then open Quantum Text editor and start coding.
-
-## What is Quantum
-Get Info About Quantum [here](https://github.com/Light-Lens/Glass/blob/master/IDE/Quantum/Quantum.md#what-is-quantum).
-
-## What is CGLass
-Get Info About CGlass [here](https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass).
-
-## Devlog at Trello
-You can get Glass's developement log at: [Trello](https://trello.com/b/xZ02JY5g/glass)<br />
+- To compile Glass, open Command Prompt in Glass Directory and type `scripts\Build.bat`.
+- Then in "bin" folder, open Command Prompt and type `Glass "full path of your file"`.
+- If you haven't created your own file then type `Glass "full path of any of the sample projects"` from `res\sample projects` folder.
+- If you want to create your own Glass program then create a new file with an extention of `.glass` at the very end of it.
 
 ## Short Term Goals
 By the end of 2021, we want to make Glass capable of handling massive console applications without any syntax complexity. Not like a test program, but this time with proper Loops, Functions, Classes, Variables, Conditional statements and much more. This means that we need to Optimize, Enhance, and make Glass Powerful so that is much Easier to use.
