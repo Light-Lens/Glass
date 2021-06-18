@@ -22,8 +22,6 @@ class Menubar:
 		parent.root.config(menu = Menu_options)
 		self.parent = parent
 
-		Change_Theme = Menu(Menu_options, font = Font_data, tearoff = 0, background = "white", foreground = "black")
-
 		# Make a File menu in Menubar
 		File_drop = Menu(Menu_options, font = Font_data, tearoff = 0, background = "white", foreground = "black")
 		File_drop.add_command(label = "New File", command = parent.new_file, accelerator = "Ctrl+N")
@@ -45,17 +43,8 @@ class Menubar:
 		Edit_drop.add_separator()
 		Edit_drop.add_command(label = "Select All", command = self.selectAll, accelerator = "Ctrl+A")
 
-		Format_drop = Menu(Menu_options, font = Font_data, tearoff = 0, background = "white", foreground = "black")
-		Format_drop.add_cascade(label = "Change Theme", menu = Change_Theme)
-		Change_Theme.add_command(label = "Light Theme")
-		Change_Theme.add_command(label = "Dark Theme")
-
-		Format_drop.add_separator()
-		Format_drop.add_command(label = "Bold", command = self.bold, accelerator = "Ctrl+B")
-		Format_drop.add_command(label = "Italic", command = self.italic, accelerator = "Ctrl+I")
-		Format_drop.add_command(label = "Underline", command = self.underline, accelerator = "Ctrl+U")
-		Format_drop.add_command(label = "Overstrike", command = self.overstrike, accelerator = "Ctrl+T")
-		Format_drop.add_command(label = "Add Date", command = self.addDate)
+		Project_drop = Menu(Menu_options, font = Font_data, tearoff = 0, background = "white", foreground = "black")
+		Project_drop.add_command(label = "Run Project", command = parent.Run_Project)
 
 		About_drop = Menu(Menu_options, font = Font_data, tearoff = 0, background = "white", foreground = "black")
 		About_drop.add_command(label = "Release Note", command = self.show_release_note)
@@ -64,7 +53,7 @@ class Menubar:
 
 		Menu_options.add_cascade(label = "File", menu = File_drop)
 		Menu_options.add_cascade(label = "Edit", menu = Edit_drop)
-		Menu_options.add_cascade(label = "Format", menu = Format_drop)
+		Menu_options.add_cascade(label = "Project", menu = Project_drop)
 		Menu_options.add_cascade(label = "Help", menu = About_drop)
 
 	# Help menu functions
@@ -115,60 +104,3 @@ class Menubar:
 				idx = lastidx
 
 			self.parent.Text_area.tag_config('found', foreground = '#f9f9f9', background = '#1054de')
-
-	# Format menu functions
-	def bold(self, *args):  # Works only if text is selected
-		try:
-			current_tags = self.parent.Text_area.tag_names("sel.first")
-			if "bold" in current_tags: self.parent.Text_area.tag_remove("bold", "sel.first", "sel.last")
-			else:
-				self.parent.Text_area.tag_add("bold", "sel.first", "sel.last")
-				bold_font = Font(self.parent.Text_area, self.parent.Text_area.cget("font"))
-				bold_font.configure(weight = "bold")
-				self.parent.Text_area.tag_configure("bold", font = bold_font)
-
-		except: pass
-
-	def italic(self, *args):  # Works only if text is selected
-		try:
-			current_tags = self.parent.Text_area.tag_names("sel.first")
-			if "italic" in current_tags: self.parent.Text_area.tag_remove("italic", "sel.first", "sel.last")
-			else:
-				self.parent.Text_area.tag_add("italic", "sel.first", "sel.last")
-				italic_font = Font(self.parent.Text_area, self.parent.Text_area.cget("font"))
-				italic_font.configure(slant = "italic")
-				self.parent.Text_area.tag_configure("italic", font = italic_font)
-
-		except: pass
-
-	def underline(self, *args):  # Works only if text is selected
-		try:
-			current_tags = self.parent.Text_area.tag_names("sel.first")
-			if "underline" in current_tags: self.parent.Text_area.tag_remove("underline", "sel.first", "sel.last")
-			else:
-				self.parent.Text_area.tag_add("underline", "sel.first", "sel.last")
-				underline_font = Font(self.parent.Text_area, self.parent.Text_area.cget("font"))
-				underline_font.configure(underline = 1)
-				self.parent.Text_area.tag_configure("underline", font = underline_font)
-
-		except: pass
-
-	def overstrike(self, *args):  # Works only if text is selected
-		try:
-			current_tags = self.parent.Text_area.tag_names("sel.first")
-			if "overstrike" in current_tags: self.parent.Text_area.tag_remove("overstrike", "sel.first", "sel.last")
-			else:
-				self.parent.Text_area.tag_add("overstrike", "sel.first", "sel.last")
-				overstrike_font = Font(self.parent.Text_area, self.parent.Text_area.cget("font"))
-				overstrike_font.configure(overstrike = 1)
-				self.parent.Text_area.tag_configure("overstrike", font = overstrike_font)
-
-		except: pass
-
-	def addDate(self):
-		full_date = time.localtime()
-		day = str(full_date.tm_mday)
-		month = str(full_date.tm_mon)
-		year = str(full_date.tm_year)
-		date = day + '/' + month + '/' + year
-		self.parent.Text_area.insert(INSERT, date, "a")

@@ -1,6 +1,6 @@
-using System;
-using PostThread;
-using Collections.DataTypes;
+import System;
+import PostThread;
+import Collections.DataTypes;
 
 string Currenttime = Time.Now();
 

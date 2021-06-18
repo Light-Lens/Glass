@@ -10,8 +10,8 @@ void PostThreadSleep(const std::string lines)
     string repl4 = replace(repl3, "\\)", "");
 
     int SleepTime;
-    if (StrFind(repl4, "\"") == false && VarTypes[repl4] == "type<int>" || StrFind(repl4, "\"") == false && VarTypes[repl4] == "type<float>") SleepTime = stoi(variables[repl4]);
-    else if (StrFind(repl4, "\"") == false) SleepTime = stoi(repl4);
+    if (StrFind(repl4, "\"") == false && VarTypes[repl4] == "type<int>" || StrFind(repl4, "\"") == false && VarTypes[repl4] == "type<float>") SleepTime = stof(variables[repl4]);
+    else if (StrFind(repl4, "\"") == false) SleepTime = stof(repl4);
     else SleepTime = 0;
 
     sleep(SleepTime);

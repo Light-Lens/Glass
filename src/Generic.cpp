@@ -21,13 +21,24 @@ std::string RandomRange(const std::string num)
     auto Comma = repl5.substr(0, repl5.find(' '));
     auto Comma2 = repl5.substr(Comma.size() + 1, Comma.find(' '));
 
-    srand(time(0)); // Set the Seed of time to 0 (Process with PC time).
+    srand((unsigned)time(NULL)); // Set the Seed of time to NULL (Process with PC time).
 
-    // Convert string to int, generate a random whole number and return the value.
+    // Convert string to int.
     int min = stoi(Comma);
     int max = stoi(Comma2);
-    int Number = (rand() % max) + min;
-    return to_string(Number);
+
+    vector<int> Random_number;
+    Random_number.resize((max * max) + (min * min));
+
+    // Generate and store lots of random float numbers into a vector array.
+    if (Random_number.size() <= 10) Random_number.resize(static_cast<int>(((max * max) + (min * min)) + 10));
+    for (int i = 0; i < Random_number.size(); i++)
+    {
+        Random_number[i] = ((rand() % max) + min);
+    }
+
+    int index = rand() % Random_number.size(); // Generate a random index value for Random_number variable.
+    return to_string(Random_number[index]); // Return the random number.
 }
 
 // This function will be used to generate a random decimal number.
@@ -48,15 +59,26 @@ std::string RandomUniform(const std::string num)
     auto Comma = repl5.substr(0, repl5.find(' '));
     auto Comma2 = repl5.substr(Comma.size() + 1, Comma.find(' '));
 
-    srand(time(0)); // Set the Seed of time to 0 (Process with PC time).
+    // Convert string to int.
+    float min = stof(Comma);
+    float max = stof(Comma2);
 
-    // Convert string to int, generate a random decimal number and return the value.
-    int min = stoi(Comma);
-    int max = stoi(Comma2);
-    int ZeroToOne = (rand() % 1000);
-    int Number = (rand() % max) + min;
+    // Start generating a random float number.
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<> dis(min, max);
 
-    string Decimal = "0." + to_string(ZeroToOne);
-    float UniformNum = stof(Decimal) * Number;
-    return to_string(UniformNum);
+    vector<float> Random_number;
+    Random_number.resize(static_cast<int>((max * max) + (min * min)));
+
+    // Generate and store lots of random float numbers into a vector array.
+    if (Random_number.size() <= 10) Random_number.resize(static_cast<int>(((max * max) + (min * min)) + 10));
+    for (int i = 0; i < Random_number.size(); i++)
+    {
+        Random_number[i] = dis(gen);
+    }
+
+    srand((unsigned)time(NULL)); // Set the Seed of time to NULL (Process with PC time).
+    int index = rand() % Random_number.size(); // Generate a random index value for Random_number variable.
+    return to_string(Random_number[index]); // Return the random float number from the vector array of a random index value generated before.
 }

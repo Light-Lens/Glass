@@ -10,8 +10,8 @@ for Filenames in Content:
     if Filenames.endswith(".cpp") and not Filenames.startswith("Glass.cpp"):
         Files.append(Filenames)
 
-for Iterations in Files:
-    Empty += f" {Iterations}"
+for Iterations in Files: Empty += f" {Iterations}"
 
-os.system(f"g++ Glass.cpp {Empty}");
+print("Compiling Glass\n")
+os.system(f"g++ Glass.cpp{Empty} -o \"..\\bin\\Glass\"");
 sys.exit()

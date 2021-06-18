@@ -49,6 +49,17 @@ class Quantum:
 		self.intellisense = Intellisense(self)
 		self.binding_keys()
 
+	def Run_Project(self, *args):
+		self.status.running_status(True)
+		self.Code = self.Text_area.get(1.0, END)
+		if self.filename.endswith(".py"): os.system(f"start python \"{self.filename}\"")
+		if self.filename.endswith(".cpp"): os.system(f"start g++ \"{self.filename}\"")
+		if self.filename.endswith(".c"): os.system(f"start gcc \"{self.filename}\"")
+		if self.filename.endswith(".java"): os.system(f"start javac \"{self.filename}\"")
+		if self.filename.endswith(".glass"): os.system(f"start glass \"{self.filename}\"")
+		if self.filename.endswith(".html"): os.system(f"start \"{self.filename}\"")
+		if self.filename.endswith(".cs"): os.system(f"start dotnet run \"{self.filename}\"")
+
 	# This will update title of the window
 	def update_title(self, name = None):
 		if name: self.root.title(f"{name} - Quantum")

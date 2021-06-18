@@ -7,6 +7,6 @@ and now it ends.*/
 
 /* Multiline comment can also be used as single line comment! */
 
-using System;
+import System;
 Shout("Hello world!");
 Get("");

@@ -19,3 +19,7 @@ class Statusbar:
 	def update_status(self, *args):
 		if isinstance(args[0], bool): self.status.set("Your File Has Been Saved!")
 		else: self.status.set("Quantum")
+
+	def running_status(self, *args):
+		if isinstance(args[0], bool): self.status.set("Your File Has Been Compiled!")
+		else: self.status.set("Quantum")

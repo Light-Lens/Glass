@@ -1,4 +1,4 @@
-using System;
+import System;
 
 Shout("Hello world");
 GetKey("");

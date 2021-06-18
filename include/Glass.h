@@ -5,6 +5,8 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstring>
+#include <vector>
+#include <random>
 #include <regex>
 #include <ctime>
 #include <map>
@@ -34,6 +36,6 @@ extern int Collectionpart;
 extern int Count;
 extern int Comments;
 
-extern std::string Arguments[7000];
+extern std::vector<std::string> Arguments;
 
 void Error(const std::string lines, const std::string num);

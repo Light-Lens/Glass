@@ -1,6 +1,6 @@
 // Imports for Variable System Test.
-using System;
-using Collections.DataTypes;
+import System;
+import Collections.DataTypes;
 
 // Test the String variable system.
 string Pass = "Continue.";

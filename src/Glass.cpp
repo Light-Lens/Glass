@@ -21,19 +21,19 @@ int Count; // This will make Count variable global which will be used by Error f
 int Comments; /* This will make Comments variable global,
 which will be used to check whether there is a multiline comment in the code.*/
 
-std::string Arguments[7000]; // You can change this in FUTURE.
+std::vector<std::string> Arguments; // This will make Arguments variable global.
 
-/* This is a global function which will generate error messages on syntax errors.
-Make this Error message function more dynamic in future.*/
+// This is a global function which will generate error messages on syntax errors.
+// Make this Error message function more dynamic in future.
 void Error(const std::string lines, const std::string num)
 {
     setConsoleColor(04);
-    cout << "Error.\nException Caught at Line: " << num << endl << "Exceptional Line: " << lines;
+    cout << "Error.\nException Caught at Line: " << num << "\nExceptional Line: " << lines;
     setConsoleColor(7);
     exit(0);
 }
 
-// Main function for Glass, all the main syntax calling will be done here only.
+// Driver program for Glass, all the main syntax calling will be done here only.
 int main(int argc, char** argv)
 {
     // Global variables
@@ -42,16 +42,25 @@ int main(int argc, char** argv)
     string DirName;
     Count = 0;
 
+    // Arguments manager.
+    Arguments.resize(argc-1);
+    for (int args = 1; args < argc; args++)
+    {
+        Arguments[args-1] = argv[args];
+    }
+
     // Initializing Glass
-    DirName = argv[1]; /* Reading command-line index[1] argument and saving it to DirName variable.
-    This variable will be used to check whether the filename is given in proper form or not.*/
+    DirName = Arguments[0]; // Reading the first argument from command-line and saving it to DirName variable.
+    // This variable will be used to check whether the filename is given in proper form or not.
+
     if (endswith(DirName, ".glass")) in.open(DirName); // Opening .glass file if the filename is proper in DirName variable.
+
+    // Throwing an error message saying "Can't read this file!", and stop the program.
+    // You must make this message more dynamic while adding other command-line arguments.
     else
     {
-        /* Throwing an error message saying "Cannot read the file!", and stop the program.
-        You must make this message more dynamic while adding other command-line arguments.*/
     	setConsoleColor(04);
-    	cout << "Error.\nCannot read \"" << DirName << "\"" << endl;
+    	cout << "Error.\nCan't read \"" << DirName << "\"." << endl;
         setConsoleColor(7);
     	exit(0);
     }
@@ -65,15 +74,14 @@ int main(int argc, char** argv)
     Genericpart = 0;
     Collectionpart = 0;
 
-    // Comments and Arguments manager.
+    // Comments counter.
     Comments = 0;
-    for (int argus = 0; argus < argc; argus++) Arguments[argus] = argv[argus];
 
     /* This While Loop will run until the file is reached at it's end,
     and it will also check certain conditions to make the programming language working properly.*/
     while (in)
     {
-        Count++; // +1 to Count variable to get the number of lines executed.
+        Count++; // Add 1 to Count variable current value to get the number of lines executed.
         getline(in, Line);
 
         /* These are not part of any Package.
@@ -86,13 +94,13 @@ int main(int argc, char** argv)
 
         /* These are the Package caller. This package will check that which package is imported,
         on that basis the other package functions will work.*/
-        else if (Line == "using System;" && Comments == 0) Syspart = 1;
-        else if (Line == "using FileIO;" && Comments == 0) FileIOpart = 1;
-        else if (Line == "using Generic;" && Comments == 0) Genericpart = 1;
-        else if (Line == "using PostThread;" && Comments == 0) Postpart = 1;
-        else if (Line == "using Webbrowser;" && Comments == 0) Webbrowser = 1;
-        else if (Line == "using Cgr.Graphics;" && Comments == 0) Cgrpart = 1;
-        else if (Line == "using Collections.DataTypes;" && Comments == 0) Collectionpart = 1;
+        else if (Line == "import System;" && Comments == 0) Syspart = 1;
+        else if (Line == "import FileIO;" && Comments == 0) FileIOpart = 1;
+        else if (Line == "import Generic;" && Comments == 0) Genericpart = 1;
+        else if (Line == "import PostThread;" && Comments == 0) Postpart = 1;
+        else if (Line == "import Webbrowser;" && Comments == 0) Webbrowser = 1;
+        else if (Line == "import Cgr.Graphics;" && Comments == 0) Cgrpart = 1;
+        else if (Line == "import Collections.DataTypes;" && Comments == 0) Collectionpart = 1;
 
         // These are the part of the System Package.
         else if (Line == "System.Exit();" && Syspart == 1 && Comments == 0) exit(0);
