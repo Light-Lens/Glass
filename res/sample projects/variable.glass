@@ -3,15 +3,15 @@ import System;
 import Collections.DataTypes;
 
 // Test the String variable system.
-string Pass = "Continue.";
+string Pass ="Continue.";
 
 Shoutln("Hello world");
 GetKey(Pass);
 Shoutln("");
 
 // Test the Bool variable system.
-bool test = True;
-bool test2 = False;
+bool test= True;
+bool test2=False;
 
 Shoutln(test);
 Shoutln(test2);

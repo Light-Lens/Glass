@@ -3,18 +3,57 @@
 
 using namespace std; // This will help us not to write std:: multiple times
 
+// This function will format the Equals symbol,
+// Because then variables can be created with any style.
+std::string Format_Equalsymbol(const std::string Line, const int WhatTODO)
+{
+    /* WhatTODO int list.
+        0 - Return Equalsymbol variable.
+        1 - Return repl variable.
+    */
+
+    string repl;
+    string Equalsymbol;
+    if (StrFind(Line, " = "))
+    {
+        Equalsymbol = " = ";
+        repl = replace(Line, "\\" + Equalsymbol, " ");
+    }
+
+    else if (StrFind(Line, "= "))
+    {
+        Equalsymbol = "= ";
+        repl = replace(Line, "\\" + Equalsymbol, " ");
+    }
+
+    else if (StrFind(Line, " ="))
+    {
+        Equalsymbol = " =";
+        repl = replace(Line, "\\" + Equalsymbol, " ");
+    }
+
+    else if (StrFind(Line, "="))
+    {
+        Equalsymbol = "=";
+        repl = replace(Line, "\\" + Equalsymbol, " ");
+    }
+
+    if (WhatTODO == 0) return Equalsymbol;
+    else return repl;
+}
+
 // This function will be used to fetch the actual content.
 std::string DataTypeStr(const std::string lines)
 {
     // Create some variable which will replace all the syntax words.
     string repl = replace(lines, "string ", "");
     string repl2 = replace(repl, "\\;", "");
-    string repl3 = replace(repl2, "\\= ", " ");
+    string repl3 = Format_Equalsymbol(repl2, 1);
     string repl4 = replace(repl3, "\"", "");
 
-    /* Check whether '=' is given in Line or not.
-    And if '=' is not given then throw an Error.*/
-    if (StrFind(repl2, "= "))
+    // Check whether '=' is given in Line or not.
+    // And if '=' is not given then throw an Error.
+    if (StrFind(repl2, Format_Equalsymbol(repl2, 0)))
     {
         // Split the string and create "name" and "data" variable.
         auto name = repl3.substr(0, repl3.find(' '));
@@ -118,11 +157,11 @@ std::string DataTypeInt(const std::string lines)
     string return_val;
     string repl = replace(lines, "int ", "");
     string repl2 = replace(repl, "\\;", "");
-    string repl3 = replace(repl2, "\\= ", "");
+    string repl3 = Format_Equalsymbol(repl2, 1);
 
-    /* Check whether '=' is given in Line or not.
-    And if '=' is not given then throw an Error.*/
-    if (StrFind(repl2, "= "))
+    // Check whether '=' is given in Line or not.
+    // And if '=' is not given then throw an Error.
+    if (StrFind(repl2, Format_Equalsymbol(repl2, 0)))
     {
         // Split the string and create "name" and "data" variable.
         auto name = repl3.substr(0, repl3.find(' '));
@@ -191,11 +230,11 @@ std::string DataTypeFloat(const std::string lines)
     string return_val;
     string repl = replace(lines, "float ", "");
     string repl2 = replace(repl, "\\;", "");
-    string repl3 = replace(repl2, "\\= ", "");
+    string repl3 = Format_Equalsymbol(repl2, 1);
 
-    /* Check whether '=' is given in Line or not.
-    And if '=' is not given then throw an Error.*/
-    if (StrFind(repl2, "= "))
+    // Check whether '=' is given in Line or not.
+    // And if '=' is not given then throw an Error.
+    if (StrFind(repl2, Format_Equalsymbol(repl2, 0)))
     {
         // Split the string and create "name" and "data" variable.
         auto name = repl3.substr(0, repl3.find(' '));
@@ -280,11 +319,11 @@ std::string DataTypeBool(const std::string lines)
     // Create some variable which will replace all the syntax words.
     string repl = replace(lines, "bool ", "");
     string repl2 = replace(repl, "\\;", "");
-    string repl3 = replace(repl2, "\\= ", "");
+    string repl3 = Format_Equalsymbol(repl2, 1);
 
-    /* Check whether '=' is given in Line or not.
-    And if '=' is not given then throw an Error.*/
-    if (StrFind(repl2, "= "))
+    // Check whether '=' is given in Line or not.
+    // And if '=' is not given then throw an Error.
+    if (StrFind(repl2, Format_Equalsymbol(repl2, 0)))
     {
         // Split the string and create "name" and "data" variable.
         auto name = repl3.substr(0, repl3.find(' '));
