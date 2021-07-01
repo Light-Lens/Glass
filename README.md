@@ -1,15 +1,13 @@
 # Glass
-Glass is a programming language made using C++ from scratch, also Glass is highly inspired by C# and Python in terms of syntax.
-
-Glass is an early-stage programming language made for beginners. Currently not much is implemented, however the developement for this language is going really slow, as I'm still learning C++, using only standard libraries and creating some of the required functions from scratch.
+Glass is primarily an early-stage programming language made using C++ from scratch. The syntax of Glass is highly inspired by C# and Python. Glass is going to be a powerful, fast and easy to learn programming language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
 
 ## Getting Started
-Visual Studio Code is recommended (You can use your desired one), Glass is not officially completed and tested yet, but you can still use it to make some small projects, as of now Glass is only focused to run on Windows Operating System.
+Visual Studio Code is recommended, Glass is officially untested on other development environments whilst we focus on a Windows build.
 
 Start by cloning the repository with `git clone https://github.com/Light-Lens/Glass`.
 
 ## The Plan
-The plan for Glass is to make it a Powerful, High-Level, OOP (Object Oriented Programming) Language. In the future Glass can also be used to develop GUI applications and Games using OpenGL (It's not confirmed that OpenGL will be used in Glass for Graphics rendering, We may use something else).
+The plan for Glass is two-fold: to create a Powerful OOP (Object Oriented Programming) Language. In future Glass can also be used to develop GUI applications and Games using OpenGL (It's not confirmed that OpenGL will be used in Glass for Graphics rendering, We may use something else).
 
 ## Main Features to Come
 - Loops (For loops, While loops)
