@@ -1,5 +1,5 @@
 # Glass
-Glass is primarily an early-stage programming language made using C++ from scratch. The syntax of Glass is highly inspired by C# and Python. Glass is going to be a powerful, fast and easy to learn programming language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
+Glass is primarily an early-stage Lrogramming Language made using C++ from scratch. Glass is highly inspired by C# and Python, so programmer coming from these languages might not face any kind of problems. It is going to be a Powerful, Fast and Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
 
 ## Getting Started
 Visual Studio Code is recommended, Glass is officially untested on other development environments whilst we focus on a Windows build.
@@ -7,7 +7,7 @@ Visual Studio Code is recommended, Glass is officially untested on other develop
 Start by cloning the repository with `git clone https://github.com/Light-Lens/Glass`.
 
 ## The Plan
-The plan for Glass is two-fold: to create a Powerful OOP (Object Oriented Programming) Language. In future Glass can also be used to develop GUI applications and Games using OpenGL (It's not confirmed that OpenGL will be used in Glass for Graphics rendering, We may use something else).
+The plan for Glass is two-fold: to create a Powerful OOP (Object Oriented Programming) Language. It should be Powerful and Fast enough that it could handle running GUI applications and Game rendering, and it should be Easy enough that these application could be written in a very short amount of time. We may use OpenGL for Game rendering, but that's just what we expect to happen in future. It's totally possible for us to use DirectX, Vulkan or something else.
 
 ## Main Features to Come
 - Loops (For loops, While loops)
@@ -43,14 +43,14 @@ You need to install the following on your machine.<br />
 ## Short Term Goals
 By the end of 2021, we want to make Glass capable of handling massive console applications without any syntax complexity. Not like a test program, but this time with proper Loops, Functions, Classes, Variables, Conditional statements and much more. This means that we need to Optimize, Enhance, and make Glass Powerful so that is much Easier to use.
 
-## License
+## License and Contributions
 All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
 
+We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the master branch, so we prefer to take pull requests there (particularly for new features).
+
 ## Mentions
-**SPECIAL THANKS** to TheCherno and Nikhil Malankar :)
+### SPECIAL THANKS to [TheCherno](https://www.youtube.com/c/TheChernoProject) and [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ) for making C++ related videos on their YouTube Channels 😀😀😀
 
-Links to their YouTube Channel:
-- [TheCherno](https://www.youtube.com/c/TheChernoProject)<br />
-- [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ)
+<hr>
 
-Thanks to everyone for your amazing support! 😃😃😃
+<h1>Thanks to everyone for your AMAZING support! 😃😃😃</h1>
