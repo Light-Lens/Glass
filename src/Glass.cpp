@@ -33,6 +33,36 @@ void Error(const std::string lines, const std::string num)
     exit(0);
 }
 
+struct Manager
+{
+    // Brackets manager.
+    void Brackets(const string& Line)
+    {
+        int Bracket[] = {0, 0}; // Bracket[0] means Open bracket and Bracket[1] means Closed bracket.
+
+        if (StrFind(Line, "(") || StrFind(Line, ")"))
+        {
+            for (int i = 0; i < Line.size(); i++)
+            {
+                if (Line[i] == '(')
+                    Bracket[0]++;
+
+                else if (Line[i] == ')')
+                    Bracket[1]++;
+            }
+
+            if (Bracket[0] != 0 && Bracket[1] != 0)
+            {
+                if (Bracket[0] != Bracket[1])
+                    Error(Line, to_string(Count));
+            }
+
+            else
+                Error(Line, to_string(Count));
+        }
+    }
+};
+
 // Driver program for Glass, all the main syntax calling will be done here only.
 int main(int argc, char** argv)
 {
@@ -41,6 +71,8 @@ int main(int argc, char** argv)
     string Line;
     string DirName;
     Count = 0;
+
+    Manager manage;
 
     // Arguments manager.
     Arguments.resize(argc-1);
@@ -83,6 +115,8 @@ int main(int argc, char** argv)
     {
         Count++; // Add 1 to Count variable current value to get the number of lines executed.
         getline(in, Line);
+
+        manage.Brackets(Line); // Check for incorrect brackets.
 
         /* These are not part of any Package.
         These are just default program syntax which doesn't need any Package to be imported to call.*/
