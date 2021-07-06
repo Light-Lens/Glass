@@ -117,10 +117,11 @@ int main(int argc, char** argv)
         getline(in, Line);
 
         manage.Brackets(Line); // Check for incorrect brackets.
+        Line = Trim(Line);
 
         /* These are not part of any Package.
         These are just default program syntax which doesn't need any Package to be imported to call.*/
-        if (Line == "" || Line == " " || startswith(Line, "  ")) continue;
+        if (Line == "") continue;
         else if (startswith(Line, "//")) continue;
         else if (getString(Line, "/*", "*/")) continue;
         else if (startswith(Line, "/*") && Comments == 0) Comments = 1;

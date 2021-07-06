@@ -48,3 +48,17 @@ std::string join(std::string& JoinString, const std::string& JoinWith)
     string Join = JoinString.append(JoinWith);
     return Join;
 }
+
+// This function will trim a certain char from the staring and ending of a string.
+std::string Trim(const std::string& FullString)
+{
+    string Whitespace = " \t";
+    const auto strBegin = FullString.find_first_not_of(Whitespace);
+    if (strBegin == string::npos)
+        return "";
+
+    const auto strEnd = FullString.find_last_not_of(Whitespace);
+    const auto strRange = strEnd - strBegin + 1;
+
+    return FullString.substr(strBegin, strRange);
+}
