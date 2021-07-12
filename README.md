@@ -51,7 +51,7 @@ All code is licensed under an MIT license. This allows you to re-use the code fr
 We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the master branch, so we prefer to take pull requests there (particularly for new features).
 
 ## Mentions
-### SPECIAL THANKS to [TheCherno](https://www.youtube.com/c/TheChernoProject) and [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ) for making C++ related videos on their YouTube Channels 😀😀😀
+### SPECIAL THANKS to [TheCherno](https://www.youtube.com/c/TheChernoProject), [CodeWithHarry](https://www.youtube.com/channel/UCeVMnSShP_Iviwkknt83cww) and [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ) for making C++ related videos on their YouTube Channels 😀😀😀
 
 <hr>
 
