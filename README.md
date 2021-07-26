@@ -1,5 +1,5 @@
 # Glass
-Glass is primarily an early-stage Programming Language made using C++ almost from scratch. Glass is highly inspired by C# and Python, so programmer coming from these languages might not face any kind of problems. It is going to be a Powerful, Fast and Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
+Glass is primarily an early-stage Programming Language written in C++ almost from scratch. Glass is highly inspired by C# and Python, so programmer coming from these languages might not face any kind of problems. It is going to be a Powerful, Fast and Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
 
 ***Note: There is a much better version of Glass in-dev, basically the whole Language has been redone from scratch. So please wait for more info, Hope you understand 😀***
 
