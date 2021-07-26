@@ -1,5 +1,5 @@
 # Glass
-Glass is primarily an early-stage Programming Language written in C++ almost from scratch. Glass is inspired by C# and Python, so programmer coming from these languages might not face any kind of problems. It is going to be a Powerful, Fast and Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
+Glass is primarily an early-stage Programming Language made using C++ almost from scratch. Glass is highly inspired by C# and Python, so programmer coming from these languages might not face any kind of problems. It is going to be a Powerful, Fast and Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
 
 ***Note: There is a much better version of Glass in-dev, basically the whole Language has been redone from scratch. So please wait for more info, Hope you understand 😀***
 
@@ -12,12 +12,12 @@ Start by cloning the repository with `git clone https://github.com/Light-Lens/Gl
 The plan for Glass is two-fold: to create a Powerful OOP (Object Oriented Programming) Language. It should be Powerful and Fast enough that it could handle running GUI applications and Game rendering, and it should be Easy enough that these application could be written in a very short amount of time. We may use OpenGL for Game rendering, but that's just what we expect to happen in future. It's totally possible for us to use DirectX, Vulkan or something else.
 
 ## Main Features to Come
-- Loops (For loops, While loops)
-- Conditional statements (If else statements, Switch statements)
-- Functions
 - Classes
+- Functions
 - Graphics rendering
-- GUI application developement support
+- Loops (For loops, While loops)
+- GUI application development support
+- Conditional statements (If else statements, Switch statements)
 - Custom Library building support (By this feature you can make a Glass Library using ".glass" files only, this means you don't need to access the source code everytime you want to create a new Library for Glass)
 
 And much more...
@@ -54,5 +54,4 @@ We welcome any contributions to Glass Programming Language development through p
 ### SPECIAL THANKS to [TheCherno](https://www.youtube.com/c/TheChernoProject), [CodeWithHarry](https://www.youtube.com/channel/UCeVMnSShP_Iviwkknt83cww) and [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ) for making C++ related videos on their YouTube Channels 😀😀😀
 
 <hr>
-
 <h1>Thanks to everyone for your AMAZING support! 😃😃😃</h1>
