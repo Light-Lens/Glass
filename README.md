@@ -22,12 +22,12 @@ The plan for Glass is two-fold: to create a Powerful OOP (Object Oriented Progra
 
 And much more...
 
-<hr>
+***
 
 ## What is [CGlass](https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass).
 ## Check out Glass's [Devlog](https://trello.com/b/xZ02JY5g/glass).
 
-<hr>
+***
 
 ## Instructions
 ### Requirments
@@ -53,5 +53,5 @@ We welcome any contributions to Glass Programming Language development through p
 ## Mentions
 ### SPECIAL THANKS to [TheCherno](https://www.youtube.com/c/TheChernoProject), [CodeWithHarry](https://www.youtube.com/channel/UCeVMnSShP_Iviwkknt83cww) and [Nikhil Malankar](https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ) for making C++ related videos on their YouTube Channels 😀😀😀
 
-<hr>
+***
 <h1>Thanks to everyone for your AMAZING support! 😃😃😃</h1>
