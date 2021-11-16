@@ -43,7 +43,7 @@ You need to install the following on your machine.<br />
 - If you want to create your own Glass program then create a new file with an extention of `.glass` at the very end of it.
 
 ## Short Term Goals
-By the end of 2021, we want to make Glass capable of handling massive console applications without any syntax complexity. Not like a test program, but this time with proper Loops, Functions, Classes, Variables, Conditional statements and much more. This means that we need to Optimize, Enhance, and make Glass Powerful so that is much Easier to use.
+By the end of 2022, we want to make Glass capable of handling massive console applications without any syntax complexity. Not like a test program, but this time with proper Loops, Functions, Classes, Variables, Conditional statements and much more. This means that we need to Optimize, Enhance, and make Glass Powerful so that is much Easier to use.
 
 ## License and Contributions
 All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
