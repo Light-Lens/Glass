@@ -22,8 +22,8 @@ The plan for Glass is two-fold: to create a Powerful, General Purpose, OOP (Obje
 
 ---
 
-## About [CGlass](https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass).
-## Check out [Glass's Devlog](https://trello.com/b/xZ02JY5g/glass).
+## About [CGlass][CGlassReadme].
+## Check out [Glass's Devlog][GlassOnTrello].
 
 ---
 
@@ -49,11 +49,14 @@ All code is licensed under an MIT license. This allows you to re-use the code fr
 We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the master branch, so we prefer to take pull requests there (particularly for new features).
 
 ## Mentions
-### SPECIAL THANKS to [TheCherno][TheChernoYT], [CodeWithHarry][CodeWithHarryYT] and [Nikhil Malankar][Nikhil MalankarYT] for making C++ related videos on their YouTube Channels 😀😀😀
+### SPECIAL THANKS to [TheCherno][TheChernoYT], [CodeWithHarry][CodeWithHarryYT] and [Nikhil Malankar][NikhilMalankarYT] for making C++ related videos on their YouTube Channels 😀😀😀
 
 ---
 <h1>Thanks to everyone for your AMAZING support! 😃😃😃</h1>
 
+[CGlassReadme]: https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass
+[GlassOnTrello]: https://trello.com/b/xZ02JY5g/glass
+
 [TheChernoYT]: https://www.youtube.com/c/TheChernoProject
 [CodeWithHarryYT]: https://www.youtube.com/channel/UCeVMnSShP_Iviwkknt83cww
-[Nikhil MalankarYT]: https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ
+[NikhilMalankarYT]: https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ
