@@ -1,0 +1,24 @@
+// Program
+import System;
+Greet = 'Hello world!';
+
+b = 1.2f
+
+Shoutln(Greet) // Print Hello world!
+GetKey('Continue.\n')
+/*test
+test2
+test3*/
+/*Test test2 test 3*/Shout("Hello world for 2nd time!")
+
+
+Type(Greet);
+
+a = "'";
+a = "Glass is working!"
+
+var_asdfasf = Get("Enter a number: ");
+
+import Time;
+Time.Now.OnlyTime()
+System.Exit(0);

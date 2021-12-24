@@ -1,0 +1,32 @@
+// Imports for Variable System Test.
+import System;
+import Collections.DataTypes;
+
+// Test the String variable system.
+string Pass ="Continue.";
+
+Shoutln("Hello world");
+GetKey(Pass);
+Shoutln("");
+
+// Test the Bool variable system.
+bool test= True;
+bool test2=False;
+
+Shoutln(test);
+Shoutln(test2);
+GetKey(Pass);
+Shoutln("");
+
+// Test the Float variable system.
+float c = 0123.91080;
+
+Shoutln(c);
+GetKey(Pass);
+Shoutln("");
+
+// Test the Int variable system.
+int d = 1398;
+
+Shoutln(d);
+Get(Pass);
