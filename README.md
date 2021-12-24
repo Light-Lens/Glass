@@ -3,7 +3,7 @@
 
 Glass is primarily an early-stage Programming Language written in C++ almost from scratch. It is inspired by Python and C#, so programmer coming from these languages may find some similarities. It is going to be a Powerful yet Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
 
-### ***Note: This branch contains the files for the NEW In-Dev version of Glass.***
+### ***Note: This branch contains the In-Dev version of Glass.***
 
 ---
 
@@ -51,13 +51,13 @@ By the end of 2022, we want to make Glass capable of handling massive console ap
 ## License and Contributions
 All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
 
-We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the master branch, so we prefer to take pull requests there (particularly for new features).
+We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the In-Dev branch, so we prefer to take pull requests there (particularly for new features).
 
 ## Mentions
 ### SPECIAL THANKS to [TheCherno][TheChernoYT], [CodeWithHarry][CodeWithHarryYT] and [Nikhil Malankar][NikhilMalankarYT] for making C++ related videos on their YouTube Channels 😀😀😀
 
-[CGlassReadme]: https://github.com/Light-Lens/Glass/blob/master/src/CGlass/CGlass.md
-[ElectronReadme]: https://github.com/Light-Lens/Glass/blob/master/src/Electron/Electron.md
+[CGlassReadme]: https://github.com/Light-Lens/Glass/blob/In-Dev/src/CGlass/CGlass.md
+[ElectronReadme]: https://github.com/Light-Lens/Glass/blob/In-Dev/src/Electron/Electron.md
 
 [GlassOnTrello]: https://trello.com/b/xZ02JY5g/glass
 
