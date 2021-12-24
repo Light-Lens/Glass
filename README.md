@@ -1,7 +1,11 @@
 # Glass
+![Glass](https://github.com/Light-Lens/Glass/blob/In-Dev/res/branding/Icons/Dark.png?raw=true)
+
 Glass is primarily an early-stage Programming Language written in C++ almost from scratch. It is inspired by Python and C#, so programmer coming from these languages may find some similarities. It is going to be a Powerful yet Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
 
-***Note: The new in-dev version of Glass is coming soon.***
+### ***Note: This branch contains the files for the NEW In-Dev version of Glass.***
+
+---
 
 ## Getting Started
 Visual Studio Code is recommended, Glass is officially untested on other development environments whilst we focus on a Windows build.
@@ -22,7 +26,8 @@ The plan for Glass is two-fold: to create a Powerful, General Purpose, OOP (Obje
 
 ---
 
-## About [CGlass][CGlassReadme].
+## What is [CGlass][CGlassReadme].
+## What is [Electron][ElectronReadme].
 ## Check out [Glass's Devlog][GlassOnTrello].
 
 ---
@@ -51,10 +56,9 @@ We welcome any contributions to Glass Programming Language development through p
 ## Mentions
 ### SPECIAL THANKS to [TheCherno][TheChernoYT], [CodeWithHarry][CodeWithHarryYT] and [Nikhil Malankar][NikhilMalankarYT] for making C++ related videos on their YouTube Channels 😀😀😀
 
----
-<h1>Thanks to everyone for your AMAZING support! 😃😃😃</h1>
+[CGlassReadme]: https://github.com/Light-Lens/Glass/blob/master/src/CGlass/CGlass.md
+[ElectronReadme]: https://github.com/Light-Lens/Glass/blob/master/src/Electron/Electron.md
 
-[CGlassReadme]: https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass
 [GlassOnTrello]: https://trello.com/b/xZ02JY5g/glass
 
 [TheChernoYT]: https://www.youtube.com/c/TheChernoProject
