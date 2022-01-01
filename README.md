@@ -51,9 +51,6 @@ We welcome any contributions to Glass Programming Language development through p
 ## Mentions
 ### SPECIAL THANKS to [TheCherno][TheChernoYT], [CodeWithHarry][CodeWithHarryYT] and [Nikhil Malankar][NikhilMalankarYT] for making C++ related videos on their YouTube Channels 😀😀😀
 
----
-<h1>Thanks to everyone for your AMAZING support! 😃😃😃</h1>
-
 [CGlassReadme]: https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass
 [GlassOnTrello]: https://trello.com/b/xZ02JY5g/glass
 
