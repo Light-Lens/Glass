@@ -19,7 +19,7 @@ using namespace std;
 
 // Global variables.
 extern int Count;
-extern int Comments;
+extern bool Comments;
 
 extern string CurrentLine;
 extern vector<string> Arguments;

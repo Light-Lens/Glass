@@ -4,7 +4,7 @@
 
 // Global variables.
 int Count;
-int Comments;
+bool Comments;
 
 string CurrentLine;
 vector<string> Arguments;
@@ -18,6 +18,7 @@ int main(int argc, char const *argv[])
     fstream File;
 
     Count = 0;
+    Comments = false;
     Arguments = Manager::Command_Line_Argv(argc, argv);
     Manager::SetPackagesToDefault();
 

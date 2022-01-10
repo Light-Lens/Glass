@@ -42,8 +42,7 @@ struct Manager
 	// Check and remove comments.
 	static string CheckComments(const string& Line)
 	{
-		// string NewStr = Line;
-		string NewStr;
+		string NewStr = "";
 		bool String, Char = false;
 		for (int i = 0; i < Line.size(); i++)
 		{
@@ -59,43 +58,16 @@ struct Manager
 				else if (!Char) Char = true;
 			}
 
-			// TODO: REFACTORE THIS CODE ALSO.
 			else if (Line.substr(i, 2) == "//" && !(String && Char && Comments)) break;
 			else if (Line.substr(i, 2) == "/*" && !(String && Char && Comments)) Comments = true;
-			else if (Line.substr(i, 2) == "*/" && Comments && !(String && Char))
-			{
-				i++;
-				Comments = false;
-			}
+			else if (Line.substr(i, 2) == "*/" && Comments && !(String && Char)) Comments = false;
 
-			else if (!Comments) NewStr += Line[i];
-
-			// TODO: REFACTOR THIS CODE.
-			// else if (NewStr.substr(i, 2) == "//" && !(String && Char && Comments)) NewStr = NewStr.substr(0, i);
-			// else if (NewStr.substr(i, 2) == "/*" && !(String && Char && Comments))
-			// {
-			// 	if (IndexOf(NewStr, "*/") > -1)
-			// 	{
-			// 		NewStr = NewStr.substr(IndexOf(NewStr, "*/" + 2));
-			// 		cout << "Test: [" << NewStr << "]\n";
-			// 	}
-
-			// 	else
-			// 	{
-			// 		Comments = true;
-			// 		NewStr = NewStr.substr(0, i);
-			// 	}
-			// }
-
-			// else if (IndexOf(NewStr, "*/") == -1 && Comments && !(String && Char)) NewStr = "";
-			// else if (IndexOf(NewStr, "*/") > -1 && Comments && !(String && Char))
-			// {
-			// 	Comments = false;
-			// 	NewStr = NewStr.substr(IndexOf(NewStr, "*/") + 2);
-			// }
+			if (!Comments) NewStr += Line[i];
 		}
 
-		return Trim(NewStr);
+		// TODO: It works for now but further improve it.
+		if (Startswith(NewStr, "*/")) NewStr = NewStr.substr(2);
+		return NewStr;
 	}
 
 	// Check for any irregularities in line.
@@ -157,35 +129,26 @@ public:
     Lang(const string& OriginalLine)
     {
 		string Line = Manager::CheckComments(OriginalLine);
+		if (!Line.empty())
+		{
+			// IF ANY LINE ENDSWITH A SEMICOLON REMOVE ';' FROM THE LINE.
+			if (Endswith(Line, ";")) Line = Trim(ReplaceLast(Line, ";", ""));
 
-        // // THESE IF STATEMENTS WILL KEEP TRACK OF COMMENTS OR EMPTY-LINES.
-		// // IF THERE ARE COMMENTS OR EMPTY-LINES THEN DON'T DO ANYTHING,
-		// // ELSE JUST FORMAT THE SYNTAX LINE AND CALL PARSER.
-		// if (Line.empty() || Startswith(Line, "//"));
-		// else if (Startswith(Line, "/*") && Endswith(Line, "*/"));
-		// else if (Startswith(Line, "/*")) Comments = true;
-		// else if (Endswith(Line, "*/")) Comments = false;
-		// else if (!Comments)
-		// if (!Line.empty())
-		// {
-		// 	// IF ANY LINE ENDSWITH A SEMICOLON REMOVE ';' FROM THE LINE.
-		// 	if (Endswith(Line, ";")) Line = Trim(ReplaceLast(Line, ";", ""));
+			// Check for incorrect quotes and brackets.
+			if (Manager::BracketsNQuotes(Line, "(", ")") == 0) Error("SyntaxError");
+			if (Manager::BracketsNQuotes(Line, "[", "]") == 0) Error("SyntaxError");
+			if (Manager::BracketsNQuotes(Line, "\"", "\"") == 0)
+			{
+				if (Manager::BracketsNQuotes(Line, "'", "'") == 0) Error("SyntaxError");
+			}
 
-		// 	// Check for incorrect quotes and brackets.
-		// 	if (Manager::BracketsNQuotes(Line, "(", ")") == 0) Error("SyntaxError");
-		// 	if (Manager::BracketsNQuotes(Line, "[", "]") == 0) Error("SyntaxError");
-		// 	if (Manager::BracketsNQuotes(Line, "\"", "\"") == 0)
-		// 	{
-		// 		if (Manager::BracketsNQuotes(Line, "'", "'") == 0) Error("SyntaxError");
-		// 	}
+			// PERFORM SOME LEXICAL ANALYSIS.
+			vector<string> Tokens = Lexer(Line);
+			Tokens[1] = Collections::DataTypes(Tokens[1]); // Classify all datatypes.
 
-		// 	// PERFORM SOME LEXICAL ANALYSIS.
-		// 	vector<string> Tokens = Lexer(Line);
-		// 	Tokens[1] = Collections::DataTypes(Tokens[1]); // Classify all datatypes.
-
-		// 	// Parse the Tokens.
-		// 	Parse(Tokens);
-		// }
+			// Parse the Tokens.
+			Parse(Tokens);
+		}
     }
 
 	vector<string> Lexer(const string& Line)
