@@ -10,56 +10,85 @@ void DeclareVar(const vector<string>& VarDeclaration);
 
 class Collections
 {
-//* NOTE: Keep in mind that Functions in this private section must be accessed only by functions of Collections class.
-private:
-    static void EscapeChars(string& Token, const string& FromEscapeChar, const string& ToEscapeChar)
-    {
-        // TODO: In a string if there's '\\n' then it should return '\n' (not new line char).
-        // TODO: But it's not processing that way, so fix this code.
-        if (Contains(Token, FromEscapeChar))
-        {
-            string NewStr;
-            vector<string> NewLine = Split(Token, FromEscapeChar);
-            for (int i = 0; i < NewLine.size(); i++)
-            {
-                if (i >= NewLine.size()-1) NewStr += NewLine[i];
-                else NewStr += NewLine[i] + ToEscapeChar;
-            }
+/*
+* DataTypes.
+[STR, String], [BOOL, Boolean], [INT, Integer], [FLOAT, Floating point], [ARR, Array]
 
-            Token = NewStr;
-        }
-    }
-
-/* Classification of DataTypes.
-	STR     -> String
-	BOOL    -> Boolean
-	INT     -> Integer
-	FLOAT   -> Floating point
-    ARR     -> Array
-
-Parse all the Line and give out some output in accordance to that Line. */
+* Functional Keywords.
+[ARR, Array], [VAR, Variable], [FUN, Function], [CLASS, Class]
+*/
 private:
     static string String(const string& Token)
     {
-        // TODO: Try to further improve this function.
         if ((Startswith(Token, "\"") && Endswith(Token, "\"")) || (Startswith(Token, "'") && Endswith(Token, "'")))
         {
+            //? Why 'S'? Don't ask me. But yes, 'S' stands for String.
+            // Sorry I didn't had any idea what I'm doing and I still don't know what I'm doing.
+            // It's name may or might not change in the future.
             string S = Token.substr(1, Token.size()-2);
+            string NewStr = "";
+            for (int i = 0; i < S.size(); i++)
+            {
+                if (S.substr(i, 2) == "\\\\")
+                {
+                    i++;
+                    NewStr += "\\";
+                }
 
-            // Punctuation characters.
-            EscapeChars(S, "\\'", "\'");
-            EscapeChars(S, "\\\"", "\"");
-            EscapeChars(S, "\\\\", "\\");
+                // Punctuation characters.
+                else if (S.substr(i, 2) == "\\'")
+                {
+                    i++;
+                    NewStr += "\'";
+                }
 
-            // Control characters.
-            EscapeChars(S, "\\n", "\n");
-            EscapeChars(S, "\\t", "\t");
-            EscapeChars(S, "\\b", "\b");
-            EscapeChars(S, "\\r", "\r");
-            EscapeChars(S, "\\f", "\f");
-            EscapeChars(S, "\\v", "\v");
+                else if (S.substr(i, 2) == "\\\"")
+                {
+                    i++;
+                    NewStr += "\"";
+                }
 
-            return "STR:" + S;
+                // Control characters.
+                else if (S.substr(i, 2) == "\\n")
+                {
+                    i++;
+                    NewStr += "\n";
+                }
+
+                else if (S.substr(i, 2) == "\\t")
+                {
+                    i++;
+                    NewStr += "\t";
+                }
+
+                else if (S.substr(i, 2) == "\\b")
+                {
+                    i++;
+                    NewStr += "\b";
+                }
+
+                else if (S.substr(i, 2) == "\\r")
+                {
+                    i++;
+                    NewStr += "\r";
+                }
+
+                else if (S.substr(i, 2) == "\\f")
+                {
+                    i++;
+                    NewStr += "\f";
+                }
+
+                else if (S.substr(i, 2) == "\\v")
+                {
+                    i++;
+                    NewStr += "\v";
+                }
+
+                else NewStr += S[i];
+            }
+
+            return "STR:" + NewStr;
         }
 
         return "undefined";
@@ -91,6 +120,7 @@ private:
 public:
     static string DataTypes(const string& Token)
     {
+        // TODO: Fix ',' bug in variable, especially in strings.
         if (Packages.count(Token) > 0) return Token;
         else if (Token.empty() || Token == "None" || Token == "NULL" || Token == "undefined") return "None";
         else if (Token == "True" || Token == "False") return Collections::Boolean(Token);

@@ -4,9 +4,17 @@
 // Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
-// Error and Change Console Color function.
-void setConsoleColor(WORD Color);
-void Error(const string& ErrorType);
+// Generate error messages on syntax errors.
+struct Error
+{
+	// Errors with specific message.
+	static void Parentheses(const string& message);
+
+	// Errors with no specific message.
+	static void SyntaxError();
+	static void FileFormat();
+	static void OpenFile();
+};
 
 // Manager class
 struct Manager
@@ -58,16 +66,15 @@ struct Manager
 				else if (!Char) Char = true;
 			}
 
-			else if (Line.substr(i, 2) == "//" && !(String && Char && Comments)) break;
+			else if (Line.substr(i, 2) == "//" || Line[i] == '#' && !(String && Char && Comments)) break;
 			else if (Line.substr(i, 2) == "/*" && !(String && Char && Comments)) Comments = true;
 			else if (Line.substr(i, 2) == "*/" && Comments && !(String && Char)) Comments = false;
 
 			if (!Comments) NewStr += Line[i];
 		}
 
-		// TODO: It works for now but further improve it.
 		if (Startswith(NewStr, "*/")) NewStr = NewStr.substr(2);
-		return NewStr;
+		return Trim(NewStr);
 	}
 
 	// Check for any irregularities in line.
@@ -135,22 +142,36 @@ public:
 			if (Endswith(Line, ";")) Line = Trim(ReplaceLast(Line, ";", ""));
 
 			// Check for incorrect quotes and brackets.
-			if (Manager::BracketsNQuotes(Line, "(", ")") == 0) Error("SyntaxError");
-			if (Manager::BracketsNQuotes(Line, "[", "]") == 0) Error("SyntaxError");
+			if (Manager::BracketsNQuotes(Line, "(", ")") == 0) Error::SyntaxError();
+			if (Manager::BracketsNQuotes(Line, "[", "]") == 0) Error::SyntaxError();
 			if (Manager::BracketsNQuotes(Line, "\"", "\"") == 0)
 			{
-				if (Manager::BracketsNQuotes(Line, "'", "'") == 0) Error("SyntaxError");
+				if (Manager::BracketsNQuotes(Line, "'", "'") == 0) Error::SyntaxError();
 			}
 
 			// PERFORM SOME LEXICAL ANALYSIS.
 			vector<string> Tokens = Lexer(Line);
-			Tokens[1] = Collections::DataTypes(Tokens[1]); // Classify all datatypes.
+			if (!Startswith(Tokens[0], "FUN:") && !Startswith(Tokens[0], "ARR:") && Tokens[1].empty()) swap(Tokens[0], Tokens[1]);
 
-			// Parse the Tokens.
+			Tokens[1] = Collections::DataTypes(Tokens[1]); // Classify all datatypes.
+			if (!Startswith(Tokens[1], "FUN:") && !Startswith(Tokens[1], "ARR:") && Tokens[0].empty()) swap(Tokens[0], Tokens[1]);
+
+			// PARSE THE TOKENS.
 			Parse(Tokens);
 		}
     }
 
+	// EVALUATE A STRING AS THOUGH IT WERE AN EXPRESSION.
+	string Evaluator(const string& Line)
+	{
+		// TODO: Take the Evaluation algorithm that you created from scratch for Studybyte from GitHub.
+		// Here's the commit ID of the code which will help you to create this Evaluation system.
+		// https://github.com/Light-Lens/Studybyte/blob/4a230cb2dee18cb0b5a5f1e2c84117222c731633/scripts/js/Color.js
+		string Operators = "+-*/()";
+		return "undefined";
+	}
+
+	// PERFORM SOME LEXICAL ANALYSIS.
 	vector<string> Lexer(const string& Line)
 	{
 		bool String, Char = false;
@@ -199,21 +220,19 @@ public:
 				break;
 			}
 
-			else if (i >= Line.size()-1)
+			else if (i >= Line.size() - 1)
 			{
 				Tokens = Tokenize(Line, "");
 				break;
 			}
 		}
 
+		// Trim out all the spaces from Token list.
+		for (int i = 0; i < Tokens.size(); i++) Tokens[i] = Trim(Tokens[i]);
 		return Tokens;
 	}
 
-	/* Classification of Functional Keywords.
-		ARR   -> Array
-		VAR   -> Variable
-		FUN   -> Function */
-	// Parse all the Line and give out some output in accordance to that Line.
+	// PARSE THE TOKENS.
 	void Parse(const vector<string>& FormattedLine)
 	{
         // THIS PACKAGE MANAGER WILL KEEP TRACK OF ALL CURRENTLY IN-USE PACKAGES.
@@ -222,6 +241,14 @@ public:
 		// THESE IF STATEMENTS WILL BE USED FOR VARIABLES DECLARATION AND USAGE.
 		else if (FormattedLine[0] == "FUN:Type") GetVarType(FormattedLine[1]);
 		else if (Startswith(FormattedLine[0], "VAR:")) DeclareVar(FormattedLine);
+
+		// Data types
+		else if (FormattedLine[0] == "None" && FormattedLine[1].empty());
+		else if (Startswith(FormattedLine[0], "ARR:") && FormattedLine[1].empty());
+		else if (Startswith(FormattedLine[0], "STR:") && FormattedLine[1].empty());
+		else if (Startswith(FormattedLine[0], "INT:") && FormattedLine[1].empty());
+		else if (Startswith(FormattedLine[0], "BOOL:") && FormattedLine[1].empty());
+		else if (Startswith(FormattedLine[0], "FLOAT:") && FormattedLine[1].empty());
 
 		// Use Standard functions without importing any package.
 		else if (FormattedLine[0] == "FUN:Shout") Shout(FormatToRun(FormattedLine[1], {"STR", "INT", "FLOAT", "BOOL", "ARR", "None"}));
@@ -247,6 +274,6 @@ public:
 		else if (FormattedLine[0] == "FUN:Time.Now.Month" && FormattedLine[1] == "None" && Packages["Time"]) Month();
 		else if (FormattedLine[0] == "FUN:Time.Now.DayOfWeek" && FormattedLine[1] == "None" && Packages["Time"]) DayOfWeek();
 		else if (FormattedLine[0] == "FUN:Time.Now.DayInMonth" && FormattedLine[1] == "None" && Packages["Time"]) DayInMonth();
-		else Error("SyntaxError");
+		else Error::SyntaxError();
 	}
 };

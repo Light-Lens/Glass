@@ -10,7 +10,7 @@ string FormatToRun(const string& Token, const vector<string>& SupportedDataTypes
         if (GetType == SupportedDataTypes[i])
             return Token.substr(Token.find(":") + 1, Token.size());
 
-        else if (i >= SupportedDataTypes.size() - 1) Error("SyntaxError");
+        else if (i >= SupportedDataTypes.size() - 1) Error::SyntaxError();
     }
 
     return "undefined";
@@ -36,7 +36,7 @@ void DeclareVar(const vector<string>& VarDeclaration)
     string VarValue = "";
     string VarName = Trim(ReplaceFirst(VarDeclaration[0], "VAR:", VarDeclaration[1].substr(0, VarDeclaration[1].find(":") + 1)));
     if (!VarDeclaration[1].empty()) VarValue = VarDeclaration[1].substr(VarDeclaration[1].find(":") + 1, VarDeclaration[1].size());
-    if (!Collections::CheckDeclaration(VarName)) Error("SyntaxError");
+    if (!Collections::CheckDeclaration(VarName)) Error::SyntaxError();
 
     Variables[VarName] = VarValue;
 }

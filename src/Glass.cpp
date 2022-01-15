@@ -26,10 +26,10 @@ int main(int argc, char const *argv[])
     // This variable will be used to check whether the filename is given in proper form or not.
     // Open ".glass" file.
     if (Endswith(Arguments[0], ".glass")) File.open(Arguments[0]);
-    else Error("FileFormat");
+    else Error::FileFormat();
 
     // Check if file opens properly.
-    if (!File) Error("OpenFile");
+    if (!File) Error::OpenFile();
     else
     {
         // Run until the file is reached it's end,

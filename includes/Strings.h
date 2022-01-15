@@ -20,4 +20,4 @@ bool IsEven(const int& Number);
 int StrCount(const string& FullString, const string& SubString);
 int IndexOf(const string& FullString, const string& SubString);
 
-vector<string> Split(const string& FullString, const string& SubString, const bool& SplitFirstWord=false);
+vector<string> Split(const string& FullString, const string& SubString="", const bool& SplitFirstWord=false);

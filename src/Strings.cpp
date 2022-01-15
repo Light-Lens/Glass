@@ -80,7 +80,7 @@ bool IsNumber(const string& Number)
     if (Number[0] == '-') NewNum = Number.substr(1);
     if (Contains(Number, "_")) NewNum = ReplaceFirst(NewNum, "_", "");
     if (Contains(Number, ".")) NewNum = ReplaceFirst(NewNum, ".", "");
-    if (Endswith(Number, "f")) NewNum = NewNum.substr(0, NewNum.size()-1);
+    if (Endswith(Number, "f")) NewNum = NewNum.substr(0, NewNum.size() - 1);
     for (char const &c : NewNum)
     {
         if (isdigit(c) == 0) return false;
@@ -161,8 +161,9 @@ vector<string> Split(const string& FullString, const string& SubString, const bo
             int PosStart = 0, PosEnd, DelimLen = SubString.length();
             string Tok;
 
-            while ((PosEnd = FullString.find (SubString, PosStart)) != string::npos) {
-                Tok = FullString.substr (PosStart, PosEnd - PosStart);
+            while ((PosEnd = FullString.find(SubString, PosStart)) != string::npos)
+            {
+                Tok = FullString.substr(PosStart, PosEnd - PosStart);
                 PosStart = PosEnd + DelimLen;
                 SplitArray.push_back(Tok);
             }

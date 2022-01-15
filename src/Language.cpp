@@ -1,36 +1,51 @@
 // Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
-// Generate error messages on syntax errors.
-void Error(const string& ErrorType)
+// Change the Color of the Current Line in Console.
+struct ConsoleColor
 {
-    setConsoleColor(04);
-    cout << "Error!" << endl;
-
-    // Unrecognized file format
-    if (ErrorType == "FileFormat")
-        cout << Arguments[0] << ": File not recognized: File format not recognized" << endl;
-
-    // Cannot open file
-    else if (ErrorType == "OpenFile")
-        cout << Arguments[0] << ": No such file or directory." << endl;
-
-    // Unrecognized syntax error
-    else if (ErrorType == "SyntaxError")
+    static void SetConsoleColor(WORD Color)
     {
-        cout << "Exception Caught at Line " << Count << "," << endl;
-        cout << CurrentLine << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Color);
     }
 
-    // Unrecognized exception
-    else cout << "Unrecognized Exception" << endl;
+    static void ResetColor()
+    {
+        WORD Color = 7;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Color);
+    }
+};
 
-    setConsoleColor(7);
+// TODO: Add more Error messages.
+// Unrecognized syntax
+void Error::SyntaxError()
+{
+    ConsoleColor::SetConsoleColor(04);
+    cout << "Error!" << endl;
+    cout << "Exception Caught at Line " << Count << ",\n" << CurrentLine << endl;
+
+    ConsoleColor::ResetColor();
     exit(0);
 }
 
-// Change the Color of the Current Line in Console.
-void setConsoleColor(WORD Color)
+// Unrecognized file format
+void Error::FileFormat()
 {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Color);
+    ConsoleColor::SetConsoleColor(04);
+    cout << "Error!" << endl;
+    cout << Arguments[0] << ": File not recognized: File format not recognized" << endl;
+
+    ConsoleColor::ResetColor();
+    exit(0);
+}
+
+// Cannot open file
+void Error::OpenFile()
+{
+    ConsoleColor::SetConsoleColor(04);
+    cout << "Error!" << endl;
+    cout << Arguments[0] << ": No such file or directory." << endl;
+
+    ConsoleColor::ResetColor();
+    exit(0);
 }
