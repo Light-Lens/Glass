@@ -1,4 +1,3 @@
-// Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
 // Wait for the given time.

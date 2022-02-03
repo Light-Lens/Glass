@@ -1,17 +1,28 @@
-// Language.h will contain the Lexer and Parser for Glass.
+// Lexer, Parser and Evaluator for Glass.
 #pragma once
-
-// Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
-// Generate error messages on syntax errors.
+// Check if a substring is in a string or not.
+//* NOTE: The string is In-Glass string.
+struct InString
+{
+	static string DataInString(const string& Line);
+	static string ExcludeDataInString(const string& Line);
+	static bool IsInString(const string& Line, const string& Phrase, const bool& ExcludeString=false);
+};
+
+// Change the Color of the Current Line in Console.
+struct ConsoleColor
+{
+    static void SetConsoleColor(WORD Color);
+    static void ResetColor();
+};
+
+// Generate error messages.
 struct Error
 {
-	// Errors with specific message.
-	static void Parentheses(const string& message);
-
-	// Errors with no specific message.
-	static void SyntaxError();
+	static void Syntax(const string& details="");
+	static void ZeroDivision();
 	static void FileFormat();
 	static void OpenFile();
 };
@@ -19,28 +30,31 @@ struct Error
 // Manager class
 struct Manager
 {
-	// Command-Line arguments manager.
-	// Copy paste the command line arguments to an array, and exclude the first item 'Glass.exe' from arguments.
-	static vector<string> Command_Line_Argv(int argc, char const *argv[])
-	{
-		vector<string> Command_Lines;
-	    Command_Lines.resize(argc-1);
+    // Copy paste all command line arguments to an array except 'Glass.exe'.
+    static vector<string> ArgParse(int argc, char const *argv[])
+    {
+        vector<string> CommandLines(argv, argv + argc);
+        CommandLines.erase(CommandLines.begin());
 
-	    for (int args = 1; args < argc; args++)
-	    	Command_Lines[args-1] = argv[args];
-
-	    return Command_Lines;
-	}
+        return CommandLines;
+    }
 
 	// Set all the Packages call value to false.
 	static void SetPackagesToDefault()
 	{
         vector<string> StandardPackages = {
-            "System",
-            "Webbrowser",
-            "Random",
-            "Time",
-			"Mathf"
+			"System",
+			"String",
+			"Time",
+			"Random",
+			"Mathf",
+			"Webbrowser",
+			"ArgParse",
+			"RegEx",
+			"FileIO",
+			"Json",
+			"GlassUI",
+			"Cgr"
         };
 
         for (int i = 0; i < StandardPackages.size(); i++)
@@ -50,60 +64,69 @@ struct Manager
 	// Check and remove comments.
 	static string CheckComments(const string& Line)
 	{
-		string NewStr = "";
+		char StrQuote = '\0';
+		bool EscapeChar = false;
 		bool String, Char = false;
+		string UnCommentedStr = "";
+
 		for (int i = 0; i < Line.size(); i++)
 		{
-			if (Line[i] == '"' && !(Char && Comments))
+			if (Line[i] == '"' && !EscapeChar)
 			{
-				if (String) String = false;
-				else if (!String) String = true;
+				if (StrQuote == '\0') StrQuote = '"';
+				else if (StrQuote == '"') StrQuote = '\0';
 			}
 
-			else if (Line[i] == '\'' && !(String && Comments))
+			else if (Line[i] == '\'' && !EscapeChar)
 			{
-				if (Char) Char = false;
-				else if (!Char) Char = true;
+				if (StrQuote == '\0') StrQuote = '\'';
+				else if (StrQuote == '\'') StrQuote = '\0';
 			}
 
-			else if (Line.substr(i, 2) == "//" || Line[i] == '#' && !(String && Char && Comments)) break;
-			else if (Line.substr(i, 2) == "/*" && !(String && Char && Comments)) Comments = true;
-			else if (Line.substr(i, 2) == "*/" && Comments && !(String && Char)) Comments = false;
+			else if (Line.substr(i, 2) == "//" && StrQuote == '\0' && !Comments) break;
+			else if (Line.substr(i, 2) == "/*" && StrQuote == '\0' && !Comments) Comments = true;
+			else if (Line.substr(i, 2) == "*/" && StrQuote == '\0' && Comments) Comments = false;
+			if (!Comments) UnCommentedStr += Line[i];
 
-			if (!Comments) NewStr += Line[i];
+			if (Line[i] == '\\' && StrQuote != '\0') EscapeChar = true;
+			else if (EscapeChar) EscapeChar = false;
 		}
 
-		if (Startswith(NewStr, "*/")) NewStr = NewStr.substr(2);
-		return Trim(NewStr);
+		if (Startswith(UnCommentedStr, "*/")) UnCommentedStr = ReplaceFirst(UnCommentedStr, "*/");
+		return Trim(UnCommentedStr);
 	}
 
 	// Check for any irregularities in line.
-	static int BracketsNQuotes(const string& Line, const string& Sw, const string& Ew)
+	static void BracketsNQuotes(const string& Line)
 	{
-		// Sw   -> Startswith
-		// Ew   -> Endsswith
-		if (Sw == Ew)
+		string NonStringData = InString::ExcludeDataInString(Line);
+
+		// Double and Single quotes
+		const int SQUOTE = StrCount(NonStringData, "'");
+		const int DQUOTE = StrCount(NonStringData, "\"");
+
+		// Parenthesis
+		const int LPAREN = StrCount(NonStringData, "(");
+		const int RPAREN = StrCount(NonStringData, ")");
+
+		// Square brackets
+		const int LSQUARE = StrCount(NonStringData, "[");
+		const int RSQUARE = StrCount(NonStringData, "]");
+
+		if (LPAREN != 0 || RPAREN != 0)
 		{
-			const int StartCount = StrCount(Line, Sw);
-			if (StartCount != 0)
-			{
-				if (IsEven(StartCount)) return 1;
-				else return 0;
-			}
+			if (LPAREN > RPAREN) Error::Syntax("'(' was never closed");
+			else if (LPAREN < RPAREN) Error::Syntax("Unmatched ')'");
 		}
 
-		else
+		if (LSQUARE != 0 || RSQUARE != 0)
 		{
-			const int StartCount = StrCount(Line, Sw);
-			const int EndCount = StrCount(Line, Ew);
-			if (StartCount != 0 || EndCount != 0)
-			{
-				if (StartCount == EndCount) return 1;
-				else return 0;
-			}
+			if (LSQUARE > RSQUARE) Error::Syntax("'[' was never closed");
+			else if (LSQUARE < RSQUARE) Error::Syntax("Unmatched ']'");
 		}
 
-		return -1;
+		if ((SQUOTE != 0 && !IsEven(SQUOTE)) || (DQUOTE != 0 && !IsEven(DQUOTE)))
+			Error::Syntax("Unterminated string literal");
 	}
 };
 
@@ -138,28 +161,32 @@ public:
 		string Line = Manager::CheckComments(OriginalLine);
 		if (!Line.empty())
 		{
-			// IF ANY LINE ENDSWITH A SEMICOLON REMOVE ';' FROM THE LINE.
-			if (Endswith(Line, ";")) Line = Trim(ReplaceLast(Line, ";", ""));
+			// TODO: Later make the ';' to act as a separator to make single line code a multiline one.
+			if (Endswith(Line, ";")) Line = Trim(ReplaceLast(Line, ";")); // Remove ';' from the line.
+			Manager::BracketsNQuotes(Line); // Check for incorrect quotes and brackets.
 
-			// Check for incorrect quotes and brackets.
-			if (Manager::BracketsNQuotes(Line, "(", ")") == 0) Error::SyntaxError();
-			if (Manager::BracketsNQuotes(Line, "[", "]") == 0) Error::SyntaxError();
-			if (Manager::BracketsNQuotes(Line, "\"", "\"") == 0)
-			{
-				if (Manager::BracketsNQuotes(Line, "'", "'") == 0) Error::SyntaxError();
-			}
-
-			// PERFORM SOME LEXICAL ANALYSIS.
+			// TODO: Improve the Lexer.
 			vector<string> Tokens = Lexer(Line);
-			if (!Startswith(Tokens[0], "FUN:") && !Startswith(Tokens[0], "ARR:") && Tokens[1].empty()) swap(Tokens[0], Tokens[1]);
+			for (const string& i : Tokens) cout << "[" << i << "]\n";
 
-			Tokens[1] = Collections::DataTypes(Tokens[1]); // Classify all datatypes.
-			if (!Startswith(Tokens[1], "FUN:") && !Startswith(Tokens[1], "ARR:") && Tokens[0].empty()) swap(Tokens[0], Tokens[1]);
+			// // PERFORM SOME LEXICAL ANALYSIS.
+			// vector<string> Tokens = Lexer(Line);
+			// if (!Startswith(Tokens[0], "FUN:") && !Startswith(Tokens[0], "ARR:") && Tokens[1].empty()) swap(Tokens[0], Tokens[1]);
 
-			// PARSE THE TOKENS.
-			Parse(Tokens);
+			// Tokens[1] = Collections::DataTypes(Tokens[1]); // Classify all datatypes.
+			// if (!Startswith(Tokens[1], "FUN:") && !Startswith(Tokens[1], "ARR:") && Tokens[0].empty()) swap(Tokens[0], Tokens[1]);
+
+			// // PARSE THE TOKENS.
+			// Parse(Tokens);
 		}
     }
+
+	vector<string> Lexer(const string& Line)
+	{
+		string Lexeme = "";
+		vector<string> Tokens;
+		return Tokens;
+	}
 
 	// EVALUATE A STRING AS THOUGH IT WERE AN EXPRESSION.
 	string Evaluator(const string& Line)
@@ -171,66 +198,66 @@ public:
 		return "undefined";
 	}
 
-	// PERFORM SOME LEXICAL ANALYSIS.
-	vector<string> Lexer(const string& Line)
-	{
-		bool String, Char = false;
-		vector<string> Tokens;
-		Tokens.resize(2);
+	// // PERFORM SOME LEXICAL ANALYSIS.
+	// vector<string> Lexer(const string& Line)
+	// {
+	// 	bool String, Char = false;
+	// 	vector<string> Tokens;
+	// 	Tokens.resize(2);
 
-		// Tokenize the functions, arrays and variables.
-		for (int i = 0; i < Line.size(); i++)
-		{
-			if (Line[i] == '"' && !Char)
-			{
-				if (String) String = false;
-				else if (!String) String = true;
-			}
+	// 	// Tokenize the functions, arrays and variables.
+	// 	for (int i = 0; i < Line.size(); i++)
+	// 	{
+	// 		if (Line[i] == '"' && !Char)
+	// 		{
+	// 			if (String) String = false;
+	// 			else if (!String) String = true;
+	// 		}
 
-			else if (Line[i] == '\'' && !String)
-			{
-				if (Char) Char = false;
-				else if (!Char) Char = true;
-			}
+	// 		else if (Line[i] == '\'' && !String)
+	// 		{
+	// 			if (Char) Char = false;
+	// 			else if (!Char) Char = true;
+	// 		}
 
-			else if (Line[i] == '=' && !String && !Char)
-			{
-				Tokens = Tokenize(Line, "=");
+	// 		else if (Line[i] == '=' && !String && !Char)
+	// 		{
+	// 			Tokens = Tokenize(Line, "=");
 
-				Tokens[0] = "VAR:" + Tokens[0];
-				Tokens[1] = Trim(ReplaceFirst(Tokens[1], "=", ""));
-				break;
-			}
+	// 			Tokens[0] = "VAR:" + Tokens[0];
+	// 			Tokens[1] = Trim(ReplaceFirst(Tokens[1], "=", ""));
+	// 			break;
+	// 		}
 
-			else if (Line[i] == '(' && !String && !Char)
-			{
-				Tokens = Tokenize(Line, "(");
+	// 		else if (Line[i] == '(' && !String && !Char)
+	// 		{
+	// 			Tokens = Tokenize(Line, "(");
 
-				Tokens[0] = "FUN:" + Tokens[0];
-				Tokens[1] = ConvertToReadableFormat("(" + Tokens[1], "(", ")");
-				break;
-			}
+	// 			Tokens[0] = "FUN:" + Tokens[0];
+	// 			Tokens[1] = ConvertToReadableFormat("(" + Tokens[1], "(", ")");
+	// 			break;
+	// 		}
 
-			else if (Line[i] == '[' && !String && !Char)
-			{
-				Tokens = Tokenize(Line, "[");
+	// 		else if (Line[i] == '[' && !String && !Char)
+	// 		{
+	// 			Tokens = Tokenize(Line, "[");
 
-				Tokens[0] = "ARR:" + Tokens[0];
-				Tokens[1] = ConvertToReadableFormat("[" + Tokens[1], "[", "]");
-				break;
-			}
+	// 			Tokens[0] = "ARR:" + Tokens[0];
+	// 			Tokens[1] = ConvertToReadableFormat("[" + Tokens[1], "[", "]");
+	// 			break;
+	// 		}
 
-			else if (i >= Line.size() - 1)
-			{
-				Tokens = Tokenize(Line, "");
-				break;
-			}
-		}
+	// 		else if (i >= Line.size() - 1)
+	// 		{
+	// 			Tokens = Tokenize(Line, "");
+	// 			break;
+	// 		}
+	// 	}
 
-		// Trim out all the spaces from Token list.
-		for (int i = 0; i < Tokens.size(); i++) Tokens[i] = Trim(Tokens[i]);
-		return Tokens;
-	}
+	// 	// Trim out all the spaces from Token list.
+	// 	for (int i = 0; i < Tokens.size(); i++) Tokens[i] = Trim(Tokens[i]);
+	// 	return Tokens;
+	// }
 
 	// PARSE THE TOKENS.
 	void Parse(const vector<string>& FormattedLine)
@@ -274,6 +301,6 @@ public:
 		else if (FormattedLine[0] == "FUN:Time.Now.Month" && FormattedLine[1] == "None" && Packages["Time"]) Month();
 		else if (FormattedLine[0] == "FUN:Time.Now.DayOfWeek" && FormattedLine[1] == "None" && Packages["Time"]) DayOfWeek();
 		else if (FormattedLine[0] == "FUN:Time.Now.DayInMonth" && FormattedLine[1] == "None" && Packages["Time"]) DayInMonth();
-		else Error::SyntaxError();
+		else Error::Syntax();
 	}
 };

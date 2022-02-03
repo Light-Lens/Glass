@@ -1,4 +1,3 @@
-// Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
 void SystemExit(const int& ExitStatus)

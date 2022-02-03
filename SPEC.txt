@@ -3,37 +3,45 @@
 ==============
 
 DESCRIPTION:
-Glass is primarily an early-stage Programming Language written in C++ almost from scratch. It is inspired by Python and C#, so programmer coming from these languages may find some similarities in it. It is going to be a Powerful yet Easy to Learn Programming Language.
+Glass is primarily an early-stage Programming Language written in C++ almost from scratch. It is inspired by Python and C#. It is going to be a Powerful yet Easy to Learn Programming Language.
 
 PLAN:
-The plan for Glass is two-fold: to create a Powerful OOP (Object Oriented Programming) Language.
+Create a Powerful yet Easy to Learn OOP (Object Oriented Programming) Language.
 
 GENERAL:
-- General Purpose
 - Object Oriented
+- General Purpose
 - Graphics Rendering
-- Custom Library Building Support
+- Semicolons are optional
+- Import '.glass' files as Packages
+- Electron, recommended Text editor for Glass
+- Shell, a simple command-line interpreter for Glass
 
-=== INSTRUCTIONS ===
-Input            -> type to be "string"
-Output           -> type to be "memory-address"
-Memory           -> type to be "var"
-Library          -> type to be a PACKAGE
-Quotes           -> type to be either of these, "", ''
-Brackets         -> type to be either of these, [], {}, (), <>
-EscapeCharacters -> type to be either of these, \n, \t
+=== DATA TYPES ===
+- String
+- Char (Only if single quotes ' are used and it only contains 1 char else it will be considered as a string)
+- Int (If F or f are used at the end of an int then it will be considered as a Float else as an Int)
+- Float
+- Bool (0 will be considered as False and any number expect 0 will be considered as True)
+- Array
 
-=== PACKAGES ===
-- Time
+=== STANDARD LIBRARIES ===
 - System
+- String
+- Time
 - Random
+- Mathf
 - Webbrowser
-- Collections
+- ArgParse
+- RegEx
+- FileIO
+- Json
+- GlassUI
+- Cgr (Capture Graphics Rendering)
 
-=== SYNTAX LAYOUT ===
-- Manager
+=== LANGUAGE LAYOUT ===
+- Manager (Command-line arguments)
+- Manager (Single and multiline comments)
 - Lexer
 - Tokenizer
 - Parser
-
-Output based on the parsed data.

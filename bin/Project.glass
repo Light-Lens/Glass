@@ -1,4 +1,4 @@
-# Program
+// Program
 import System;
 Greet = 'Hello world!';
 
@@ -7,12 +7,18 @@ b = 1.2f
 Shoutln(Greet) // Print Hello world!
 GetKey('Continue.\n')
 
-Greet
-"Test"
+
+"\"Test\""
 1
 4.7f
 True
 'String'
+
+/*
+This is a multiline comment.
+Just like single line comments this multiline comment will be ignored by Glass.
+*/
+
 
 Shout("Hello world for 2nd time!")
 Type(Greet);

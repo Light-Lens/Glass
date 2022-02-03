@@ -1,6 +1,6 @@
 #pragma once
 
-// These are all important includes!
+// Important includes.
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -14,7 +14,7 @@
 #include <string.h>
 #include <conio.h>
 
-// This will help us to avoid writing 'std::' multiple times.
+// Avoid writing 'std::' multiple times.
 using namespace std;
 
 // Global variables.
@@ -26,7 +26,7 @@ extern vector<string> Arguments;
 extern map<string, string> Variables;
 extern map<string, bool> Packages;
 
-// These are all custom Headers for Glass
+// Custom Headers for Glass.
 #include "../includes/Strings.h"
 #include "../includes/Time.h"
 #include "../includes/System.h"

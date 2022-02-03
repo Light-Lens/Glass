@@ -1,7 +1,5 @@
 // Language.h will contain the Lexer and Parser for Glass.
 #pragma once
-
-// Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
 void Sleep(const float& SleepTime);

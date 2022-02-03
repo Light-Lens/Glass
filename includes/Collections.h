@@ -1,7 +1,5 @@
 // Language.h will contain the Lexer and Parser for Glass.
 #pragma once
-
-// Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
 string FormatToRun(const string& Token, const vector<string>& SupportedDataTypes);
@@ -25,7 +23,7 @@ private:
             //? Why 'S'? Don't ask me. But yes, 'S' stands for String.
             // Sorry I didn't had any idea what I'm doing and I still don't know what I'm doing.
             // It's name may or might not change in the future.
-            string S = Token.substr(1, Token.size()-2);
+            string S = Token.substr(1, Token.size() - 2);
             string NewStr = "";
             for (int i = 0; i < S.size(); i++)
             {
@@ -102,10 +100,13 @@ private:
 
     static string IntFloat(const string& Token)
     {
-        if (IsNumber(Token) && (Contains(Token, ".") || Endswith(Token, "f")))
-            return "FLOAT:" + ReplaceLast(Token, "f", "");
+        if (IsNumber(Token))
+        {
+            if (Endswith(Token, "f") || Endswith(Token, "F")) return "FLOAT:" + Token.substr(0, Token.size() - 1);
+            else if (Contains(Token, ".")) return "FLOAT:" + Token;
+            else return "INT:" + Token;
+        }
 
-        else if (IsNumber(Token)) return "INT:" + Token;
         return "undefined";
     }
 
@@ -122,7 +123,7 @@ public:
     {
         // TODO: Fix ',' bug in variable, especially in strings.
         if (Packages.count(Token) > 0) return Token;
-        else if (Token.empty() || Token == "None" || Token == "NULL" || Token == "undefined") return "None";
+        else if (Token.empty() || Token == "None" || Token == "NULL") return "None";
         else if (Token == "True" || Token == "False") return Collections::Boolean(Token);
         else if (IsNumber(Token)) return Collections::IntFloat(Token);
         else if (Contains(Token, "\"") || Contains(Token, "'")) return Collections::String(Token);

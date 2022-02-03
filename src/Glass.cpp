@@ -1,5 +1,4 @@
 // Glass programming language
-// Glass.h has all required includes for Glass.
 #include "../includes/Glass.h"
 
 // Global variables.
@@ -19,29 +18,50 @@ int main(int argc, char const *argv[])
 
     Count = 0;
     Comments = false;
-    Arguments = Manager::Command_Line_Argv(argc, argv);
+    Arguments = Manager::ArgParse(argc, argv);
     Manager::SetPackagesToDefault();
 
-    // Read the first argument from command-line and save it to Filename variable.
-    // This variable will be used to check whether the filename is given in proper form or not.
-    // Open ".glass" file.
-    if (Endswith(Arguments[0], ".glass")) File.open(Arguments[0]);
-    else Error::FileFormat();
-
-    // Check if file opens properly.
-    if (!File) Error::OpenFile();
-    else
+    if (Arguments.size() == 0)
     {
-        // Run until the file is reached it's end,
-        while (getline(File, CurrentLine))
+        // Show GLass version.
+        ConsoleColor::SetConsoleColor(14);
+        cout << "Glass 2022 [Version 1.2]";
+        ConsoleColor::ResetColor();
+
+        // Run forever.
+        while (true)
         {
-            // Increment 1 to Count everytime a line is executed.
-            Count++;
+            Count++; // Increment 1 to Count everytime a line is executed.
+
+            // Take input.
+            cout << "\n> ";
+            getline(cin, CurrentLine);
             Lang Code(CurrentLine);
         }
+    }
 
-        // Close the file.
-        File.close();
+    // Read the first argument and save it as a variable.
+    else if (Arguments.size() > 0)
+    {
+        if (!Endswith(Arguments[0], ".glass")) Error::FileFormat();
+        else
+        {
+            // Check if file opens properly.
+            File.open(Arguments[0]);
+            if (!File) Error::OpenFile();
+            else
+            {
+                // Run until the file is reached it's end
+                while (getline(File, CurrentLine))
+                {
+                    Count++; // Increment 1 to Count everytime a line is executed.
+                    Lang Code(CurrentLine);
+                }
+
+                // Close the file.
+                File.close();
+            }
+        }
     }
 
     return 0;

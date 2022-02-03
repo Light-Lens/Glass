@@ -16,7 +16,8 @@ Args = Parser.parse_args()
 init(autoreset = True)
 
 ModifiedFiles = []
-LastBuildTime = os.path.getmtime("..\\scripts\\Build.log")
+LastBuildTime = 0
+if os.path.isfile("Build.log"): LastBuildTime = os.path.getmtime("..\\scripts\\Build.log")
 
 # Check for modified files.
 print(f"{Fore.YELLOW}{Style.BRIGHT}> Checking files")
@@ -61,12 +62,13 @@ else:
         BuildNum = int(open("Build.log", "r", encoding="utf-8").read())
         open("Build.log", "w", encoding="utf-8").write(str(BuildNum + 1))
 
-    else: open("Build.log", "w", encoding="utf-8").write("0")
+    else: open("Build.log", "w", encoding="utf-8").write("1")
 
 # Exit the progarm successfully.
 BuildNum = open("..\\scripts\\Build.log", "r", encoding="utf-8").read()
 CTime = datetime.time(datetime.datetime.now().hour, datetime.datetime.now().minute, datetime.datetime.now().second)
-print(f"Glass executable exists at {Fore.CYAN}{Style.BRIGHT}'..\\bin\\Glass.exe'")
+if os.path.isfile("..\\bin\\Glass.exe"): print(f"Glass executable exists at {Fore.CYAN}{Style.BRIGHT}'..\\bin\\Glass.exe'")
+else: print(f"{Fore.RED}{Style.BRIGHT}Cannot find Glass.exe")
 if Args.o:
     print("Opening build directory")
     os.startfile(".")
@@ -79,9 +81,10 @@ print("Done.")
 if Args.r:
     # Run the program.
     print(f"\n{Fore.YELLOW}{Style.BRIGHT}> Executing '{Args.r}'")
+    if os.path.isfile("..\\bin\\Glass.exe"):
+        # Move to Bin folder.
+        os.chdir("..\\bin")
+        os.system(f"Glass {Args.r}")
 
-    # Move to Bin folder.
-    os.chdir("..\\bin")
-    os.system(f"Glass {Args.r}")
-
+    else: print(f"{Fore.RED}{Style.BRIGHT}Cannot find Glass.exe")
 sys.exit()
