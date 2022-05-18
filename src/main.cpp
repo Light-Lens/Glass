@@ -1,14 +1,22 @@
 #include "../includes/Common.h"
 using namespace std;
 
+int LineNum = 0;
+string CurrentLine;
+
+// Run the code.
+void run()
+{
+    LineNum++; // +1 on every new line.
+    cout << CurrentLine << endl;
+}
+
+// Entry point
 int main(int argc, char const *argv[])
 {
     // Initializing Glass
     fstream File;
     vector<string> Arguments = Manager::ArgParse(argc, argv);
-
-    int LineNum = 0;
-    string CurrentLine;
 
     if (Arguments.size() == 0)
     {
@@ -17,15 +25,12 @@ int main(int argc, char const *argv[])
         cout << "Glass 2022 [Version 1.3]";
         ConsoleColor::ResetColor();
 
-        // Run forever.
+        // Take input.
         while (true)
         {
-            LineNum++; // +1 on every new line.
-
-            // Take input.
             cout << "\n> ";
             getline(cin, CurrentLine);
-            cout << "Hello world!" << endl;
+            run();
         }
     }
 
@@ -41,12 +46,7 @@ int main(int argc, char const *argv[])
             else
             {
                 // Run until the file is reached it's end
-                while (getline(File, CurrentLine))
-                {
-                    LineNum++; // +1 on every new line.
-                    cout << "Hello world!" << endl;
-                }
-
+                while (getline(File, CurrentLine)) run();
             }
 
             // Close the file.
