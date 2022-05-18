@@ -50,7 +50,7 @@ if Args.e:
     print(f"\n{Fore.YELLOW}{Style.BRIGHT}> Executing '{Args.e}'")
     if os.path.isfile("..\\bin\\Glass.exe"):
         os.chdir("..\\bin") # Move to Bin folder.
-        os.system(f"Glass {Args.r}")
+        os.system(f"Glass {Args.e}")
 
     else: print(f"{Fore.RED}{Style.BRIGHT}Cannot find Glass.exe")
 
