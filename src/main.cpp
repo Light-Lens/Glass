@@ -47,9 +47,10 @@ int main(int argc, char const *argv[])
                     cout << "Hello world!" << endl;
                 }
 
-                // Close the file.
-                File.close();
             }
+
+            // Close the file.
+            File.close();
         }
     }
 
