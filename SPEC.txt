@@ -3,10 +3,7 @@
 ==============
 
 DESCRIPTION:
-Glass is primarily an early-stage Programming Language written in C++ almost from scratch. It is inspired by Python and C#. It is going to be a Powerful yet Easy to Learn Programming Language.
-
-PLAN:
-Create a Powerful yet Easy to Learn OOP (Object Oriented Programming) Language.
+Glass is primarily an early-stage Programming Language written in C++ specifically degined to create games. It's syntax is inspired by Python and C#. It is going to be a Powerful yet Easy to Learn Language.
 
 GENERAL:
 - Object Oriented
