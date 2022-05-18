@@ -10,6 +10,6 @@
 #include <string.h>
 #include <conio.h>
 
-#include "includes\Error.h"
-#include "includes\Manager.h"
-#include "includes\Strings.h"
+#include "..\includes\Error.h"
+#include "..\includes\Manager.h"
+#include "..\includes\Strings.h"

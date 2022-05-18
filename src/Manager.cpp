@@ -1,4 +1,4 @@
-#include "../includes/Common.h"
+#include "..\includes\Common.h"
 using namespace std;
 
 // Copy paste all command line arguments to an array except 'Glass.exe'.
