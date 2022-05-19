@@ -4,7 +4,7 @@
 // Manage Arguments, Packages and Comments
 class Manager
 {
-	public:
+    public:
         static std::vector<std::string> ArgParse(int argc, char const *argv[]);
 };
 

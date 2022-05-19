@@ -8,7 +8,7 @@ string CurrentLine;
 void run()
 {
     LineNum++; // +1 on every new line.
-    cout << CurrentLine << endl;
+    Lexer lex;
 }
 
 // Entry point
@@ -16,9 +16,9 @@ int main(int argc, char const *argv[])
 {
     // Initializing Glass
     fstream File;
-    vector<string> Arguments = Manager::ArgParse(argc, argv);
+    vector<string> args = Manager::ArgParse(argc, argv);
 
-    if (Arguments.size() == 0)
+    if (args.size() == 0)
     {
         // Show Glass version.
         ConsoleColor::SetConsoleColor(14);
@@ -35,14 +35,14 @@ int main(int argc, char const *argv[])
     }
 
     // Read the first argument and save it as a variable.
-    else if (Arguments.size() > 0)
+    else if (args.size() > 0)
     {
-        if (!Strings::Endswith(Arguments[0], ".glass")) Error::FileFormat(Arguments[0]);
+        if (!Strings::Endswith(args[0], ".glass")) Error::FileFormat(args[0]);
         else
         {
             // Check if file opens properly.
-            File.open(Arguments[0]);
-            if (!File) Error::OpenFile(Arguments[0]);
+            File.open(args[0]);
+            if (!File) Error::OpenFile(args[0]);
             else
             {
                 // Run until the file is reached it's end

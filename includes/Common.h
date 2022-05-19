@@ -10,6 +10,11 @@
 #include <string.h>
 #include <conio.h>
 
+#include "..\includes\Glass.h"
 #include "..\includes\Error.h"
-#include "..\includes\Manager.h"
 #include "..\includes\Strings.h"
+#include "..\includes\Manager.h"
+#include "..\includes\Collections.h"
+
+extern int LineNum;
+extern std::string CurrentLine;

@@ -15,6 +15,8 @@ class InString
 class Strings
 {
     public:
+        static std::string Trim(const std::string& Sentence);
+        static bool IsEven(const int& Number);
         static bool Startswith(const std::string& Sentence, const std::string& WhatToFind);
         static bool Endswith(const std::string& Sentence, const std::string& WhatToFind);
         static bool Find(const std::string& Sentence, const std::string& WhatToFind);

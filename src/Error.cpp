@@ -2,28 +2,28 @@
 using namespace std;
 
 // Unrecognized syntax.
-// void Error::Syntax(const string& details)
-// {
-//     ConsoleColor::SetConsoleColor(12);
-//     cout << "Error!" << endl;
-//     cout << "Exception Caught at Line " << Count << ",\n" << CurrentLine << endl;
-//     cout << "\nSyntaxError: " << details << endl;
+void Error::Syntax(const string& details)
+{
+    ConsoleColor::SetConsoleColor(12);
+    cout << "Error!" << endl;
+    cout << "Exception Caught at Line " << LineNum << ",\n" << CurrentLine << endl;
+    cout << "\nSyntaxError: " << details << endl;
 
-//     ConsoleColor::ResetColor();
-//     exit(0);
-// }
+    ConsoleColor::ResetColor();
+    exit(0);
+}
 
-// // Division by 0.
-// void Error::ZeroDivision()
-// {
-//     ConsoleColor::SetConsoleColor(12);
-//     cout << "Error!" << endl;
-//     cout << "Exception Caught at Line " << Count << ",\n" << CurrentLine << endl;
-//     cout << "ZeroDivisionError: Division by 0" << endl;
+// Division by 0.
+void Error::ZeroDivision()
+{
+    ConsoleColor::SetConsoleColor(12);
+    cout << "Error!" << endl;
+    cout << "Exception Caught at Line " << LineNum << ",\n" << CurrentLine << endl;
+    cout << "ZeroDivisionError: Division by 0" << endl;
 
-//     ConsoleColor::ResetColor();
-//     exit(0);
-// }
+    ConsoleColor::ResetColor();
+    exit(0);
+}
 
 // Unrecognized file format.
 void Error::FileFormat(string Filename)

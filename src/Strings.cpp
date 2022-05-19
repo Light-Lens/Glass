@@ -133,3 +133,22 @@ bool Strings::Find(const string& Sentence, const string& WhatToFind)
     if (Sentence.find(WhatToFind) != string::npos) return true;
     else return false;
 }
+
+// Trim a certain char from the staring and ending of a string.
+string Strings::Trim(const string& Sentence)
+{
+    const string Whitespace = " \t";
+    const auto strBegin = Sentence.find_first_not_of(Whitespace);
+    if (strBegin == string::npos) return "";
+
+    const auto strEnd = Sentence.find_last_not_of(Whitespace);
+    const auto strRange = strEnd - strBegin + 1;
+
+    return Sentence.substr(strBegin, strRange);
+}
+
+// Check whether the given number is Odd or Even.
+bool Strings::IsEven(const int& Number)
+{
+    return (Number % 2 == 0);
+}
