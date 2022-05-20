@@ -63,6 +63,10 @@ Lexer::Lexer()
 {
     TrimmedLine = Strings::Trim(CurrentLine);
     if (!BracketsNQuotes()) Tokenizer();
+
+    vector<string> Test = Collections::Array::Reduce(Tokens);
+    for (int i = 0; i < Test.size(); i++)
+        cout << "[" << Test[i] << "]\n";
 }
 
 void Lexer::Tokenizer()
@@ -120,8 +124,4 @@ void Lexer::Tokenizer()
 
         Tokens = Toks;
     }
-
-    vector<string> Test = Collections::Array::Reduce(Tokens);
-    for (int i = 0; i < Test.size(); i++)
-        cout << "[" << Test[i] << "]\n";
 }
