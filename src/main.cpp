@@ -21,7 +21,7 @@ int main(int argc, char const *argv[])
     if (args.size() == 0)
     {
         // Show Glass version.
-        ConsoleColor::SetConsoleColor(14);
+        ConsoleColor::SetConsoleColor(9);
         cout << "Glass 2022 [Version 1.3]";
         ConsoleColor::ResetColor();
 

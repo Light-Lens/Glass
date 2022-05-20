@@ -6,6 +6,7 @@ class Lexer
 {
     private:
         static std::string TrimmedLine;
+        static std::vector<std::string> Tokens;
 
     private:
         static bool BracketsNQuotes();

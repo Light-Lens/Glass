@@ -5,57 +5,69 @@ using namespace std;
 //                InStrings
 // =========================================
 
-// Check whether a Phrase exists in Glass's string.
-bool InString::IsInString(const string& Line, const string& Phrase, const bool& ExcludeString)
-{
-    if (ExcludeString)
-    {
-        string NonStringData = InString::ExcludeDataInString(Line);
-        if (Strings::Find(NonStringData, Phrase)) return true;
-        else return false;
-    }
-
-    else
-    {
-        string InStringData = InString::DataInString(Line);
-        if (Strings::Find(InStringData, Phrase)) return true;
-        else return false;
-    }
-
-    return false;
-}
-
 // Extract all the data from a string.
-string InString::DataInString(const string& Line)
+vector<string> InString::DataInString(const string& Line)
 {
     char StrQuote = '\0';
     bool EscapeChar = false;
     string InStringData = "";
+    vector<string> Strings;
 
     // Loop over every char and store those which exist in In-Glass String.
     for (const char& i : Line)
     {
-		if (i == '"' && !EscapeChar)
-		{
-            InStringData += i;
-            if (StrQuote == '\0') StrQuote = '"';
-            else if (StrQuote == '"') StrQuote = '\0';
-		}
+        if (EscapeChar)
+        {
+            if (i == '\\') InStringData += "\\";
 
-		else if (i == '\'' && !EscapeChar)
-		{
-            InStringData += i;
-            if (StrQuote == '\0') StrQuote = '\'';
-            else if (StrQuote == '\'') StrQuote = '\0';
-		}
+            // Punctuation characters.
+            else if (i == '\'') InStringData += "'";
+            else if (i == '"') InStringData += "\"";
 
-        else if (StrQuote != '\0') InStringData += i;
+            // Control characters.
+            else if (i == 'n') InStringData += "\n";
+            else if (i == 't') InStringData += "\t";
+            else if (i == 'b') InStringData += "\b";
+            else if (i == 'r') InStringData += "\r";
+            else if (i == 'f') InStringData += "\f";
+            else if (i == 'v') InStringData += "\v";
+            else InStringData += i;
 
-        if (i == '\\' && StrQuote != '\0') EscapeChar = true;
-        else if (EscapeChar) EscapeChar = false;
+            EscapeChar = false;
+        }
+
+        else
+        {
+            if (i == '"' && !EscapeChar)
+            {
+                InStringData += i;
+                if (StrQuote == '\0') StrQuote = '"';
+                else if (StrQuote == '"')
+                {
+                    StrQuote = '\0';
+                    Strings.push_back(InStringData);
+                    InStringData = "";
+                }
+            }
+
+            else if (i == '\'' && !EscapeChar)
+            {
+                InStringData += i;
+                if (StrQuote == '\0') StrQuote = '\'';
+                else if (StrQuote == '\'')
+                {
+                    StrQuote = '\0';
+                    Strings.push_back(InStringData);
+                    InStringData = "";
+                }
+            }
+
+            else if (i == '\\' && StrQuote != '\0') EscapeChar = true;
+            else if (StrQuote != '\0') InStringData += i;
+        }
     }
 
-    return InStringData;
+    return Strings;
 }
 
 // Exclude all data in a string.
@@ -68,8 +80,8 @@ string InString::ExcludeDataInString(const string& Line)
     // Loop over every char and store those which does not exist in In-Glass String.
     for (const char& i : Line)
     {
-		if (i == '"' && !EscapeChar)
-		{
+        if (i == '"' && !EscapeChar)
+        {
             if (StrQuote == '\0')
             {
                 StrQuote = '"';
@@ -81,10 +93,10 @@ string InString::ExcludeDataInString(const string& Line)
                 StrQuote = '\0';
                 NonStringData += i;
             }
-		}
+        }
 
-		else if (i == '\'' && !EscapeChar)
-		{
+        else if (i == '\'' && !EscapeChar)
+        {
             if (StrQuote == '\0')
             {
                 StrQuote = '\'';
@@ -96,12 +108,12 @@ string InString::ExcludeDataInString(const string& Line)
                 StrQuote = '\0';
                 NonStringData += i;
             }
-		}
+        }
 
         else if (StrQuote == '\0') NonStringData += i;
 
-        if (i == '\\' && StrQuote != '\0') EscapeChar = true;
-        else if (EscapeChar) EscapeChar = false;
+        if (EscapeChar) EscapeChar = false;
+        else if (i == '\\' && StrQuote != '\0') EscapeChar = true;
     }
 
     return NonStringData;

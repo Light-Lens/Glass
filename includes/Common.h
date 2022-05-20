@@ -1,8 +1,10 @@
 #pragma once
 
 // Standard libraries
+#include <algorithm>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 
 #include <windows.h>

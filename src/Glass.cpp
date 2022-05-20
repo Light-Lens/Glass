@@ -2,6 +2,7 @@
 using namespace std;
 
 string Lexer::TrimmedLine;
+vector<string> Lexer::Tokens;
 
 bool Lexer::BracketsNQuotes()
 {
@@ -66,5 +67,61 @@ Lexer::Lexer()
 
 void Lexer::Tokenizer()
 {
-    cout << TrimmedLine << endl;
+    string Lexemes = "";
+    string NonStringStr = InString::ExcludeDataInString(TrimmedLine);
+    string NoSpaceLexeme = "";
+
+    int StrIdx = 0;
+    bool IsString = false;
+
+    vector<string> Toks;    
+    vector<string> String = InString::DataInString(TrimmedLine);
+    for (int i = 0; i < NonStringStr.size(); i++)
+    {
+        Lexemes += Strings::ToString(NonStringStr[i]);
+        if (Strings::Endswith(Lexemes, "//")) break;
+        else if (Strings::Endswith(Lexemes, " "))
+        {
+            NoSpaceLexeme = Lexemes.substr(0, Lexemes.size() - 1);
+            if (!Collections::String::IsEmpty(NoSpaceLexeme)) Toks.push_back(NoSpaceLexeme);
+            Toks.push_back(Strings::ToString(NonStringStr[i]));
+            Lexemes = "";
+        }
+
+        else if (Strings::Endswith(Lexemes, "\"") || Strings::Endswith(Lexemes, "'"))
+        {
+            if (IsString)
+            {
+                Toks.push_back(String[StrIdx]);
+                IsString = false;
+                StrIdx++;
+            }
+
+            else IsString = true;
+
+            NoSpaceLexeme = Lexemes.substr(0, Lexemes.size() - 1);
+            if (!Collections::String::IsEmpty(NoSpaceLexeme)) Toks.push_back(NoSpaceLexeme);
+            Lexemes = "";
+        }
+
+        else if (Strings::Endswith(Lexemes, "(") || Strings::Endswith(Lexemes, ")"))
+        {
+            NoSpaceLexeme = Lexemes.substr(0, Lexemes.size() - 1);
+            if (!Collections::String::IsEmpty(NoSpaceLexeme)) Toks.push_back(NoSpaceLexeme);
+            Toks.push_back(Strings::ToString(NonStringStr[i]));
+            Lexemes = "";
+        }
+
+        if (i == NonStringStr.size() - 1 && !Collections::String::IsEmpty(Lexemes))
+        {
+            Toks.push_back(Lexemes);
+            Lexemes = "";
+        }
+
+        Tokens = Toks;
+    }
+
+    vector<string> Test = Collections::Array::Reduce(Tokens);
+    for (int i = 0; i < Test.size(); i++)
+        cout << "[" << Test[i] << "]\n";
 }
