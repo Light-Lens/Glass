@@ -1,5 +1,5 @@
 # Glass
-![Glass](https://github.com/Light-Lens/Glass/blob/In-Dev/res/branding/Icons/Dark.png?raw=true)
+![Glass](https://github.com/Light-Lens/Glass/blob/In-Dev/res/branding/Icons/Transparent.png?raw=true)
 
 Glass is an early-stage programming language written in C++ which will be a **Powerful** yet **Easy to Learn** language as it's inspirations are Python and C#, however it's primary goal is to create games and game engines from scratch.
 
