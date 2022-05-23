@@ -3,7 +3,7 @@
 
 Glass is an early-stage programming language written in C++ which will be a **Powerful** yet **Easy to Learn** language as it's inspirations are Python and C#, however it's primary goal is to create games and game engines from scratch.
 
-The plan for Glass is two-fold: to create a Powerful, General Purpose, OOP (Object Oriented Programming) Language which will be capable of handling massive GUI and Game rendering applications using the SDL2 game library.
+The plan for Glass is to create a Powerful, General Purpose, OOP (Object Oriented Programming) Language which will be capable of handling massive GUI and Game rendering applications using the SDL2 game library.
 
 ### ***Note: This branch contains the In-Dev version of Glass, some features may not functions properly.***
 
