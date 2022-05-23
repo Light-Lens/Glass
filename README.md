@@ -21,7 +21,7 @@ Start by cloning the repository with `git clone https://github.com/Light-Lens/Gl
 2. Run the [Build.bat](https://github.com/Light-Lens/Glass/blob/In-Dev/scripts/Build.bat) file found in `scripts` folder via Command Prompt with `-c` parameter to compile Glass.
 
 <ins>**3. Setting up project:**</ins>
-1. Create a file with `.glass` extension and write some code in it. You will find some sample code in [`res\sample projects`](https://github.com/Light-Lens/Glass/tree/In-Dev/res/sample%20projects)
+1. Create a file with `.glass` extension and write some code in it. You will find some sample code in [`res\sample projects`](https://github.com/Light-Lens/Glass/tree/In-Dev/res/sample%20projects) folder.
 2. As soon as Glass compiles, start Command Prompt in `bin` folder and type `Glass.exe [path of your file]` to run the program.
 
 ## Short Term Goals
