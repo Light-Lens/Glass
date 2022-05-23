@@ -17,7 +17,7 @@ Visual Studio Code is recommended, Glass is officially untested on other develop
 Start by cloning the repository with `git clone https://github.com/Light-Lens/Glass`.
 
 <ins>**2. Configuring the dependencies:**</ins>
-1. Install [Mingw-w64](http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download), [Python 3](https://www.python.org/downloads/windows), [Visual Studio Code](https://code.visualstudio.com/download) on your machine.
+1. Install [Mingw-w64](http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download), [Python 3](https://www.python.org/downloads/windows), and [Visual Studio Code](https://code.visualstudio.com/download) on your machine.
 2. Run the [Build.bat](https://github.com/Light-Lens/Glass/blob/In-Dev/scripts/Build.bat) file found in `scripts` folder via Command Prompt with `-c` parameter to compile Glass.
 
 <ins>**3. Setting up project:**</ins>
