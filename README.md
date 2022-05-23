@@ -26,18 +26,12 @@ The plan for Glass is two-fold: to create a Powerful, General Purpose, OOP (Obje
 
 ---
 
-## What is [CGlass][CGlassReadme].
-## What is [Electron][ElectronReadme].
-## Check out [Glass's Devlog][GlassOnTrello].
-
----
-
 ## Instructions
-### Requirments
+### Requirements
 You need to install the following on your machine.
-- Mingw-w64
-- Python 3
-- Visual Studio Code (or any other IDE)
+- [Mingw-w64](http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download)
+- [Python 3](https://www.python.org/downloads/windows)
+- [Visual Studio Code](https://code.visualstudio.com/download)
 
 ### How To Use
 - Create a Glass program by creating a new file with the extention `.glass`
@@ -52,15 +46,3 @@ By the end of 2022, we want to make Glass capable of handling massive console ap
 All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
 
 We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the In-Dev branch, so we prefer to take pull requests there (particularly for new features).
-
-## Mentions
-### SPECIAL THANKS to [TheCherno][TheChernoYT], [CodeWithHarry][CodeWithHarryYT] and [Nikhil Malankar][NikhilMalankarYT] for making C++ related videos on their YouTube Channels 😀😀😀
-
-[CGlassReadme]: https://github.com/Light-Lens/Glass/blob/In-Dev/src/CGlass/CGlass.md
-[ElectronReadme]: https://github.com/Light-Lens/Glass/blob/In-Dev/src/Electron/Electron.md
-
-[GlassOnTrello]: https://trello.com/b/xZ02JY5g/glass
-
-[TheChernoYT]: https://www.youtube.com/c/TheChernoProject
-[CodeWithHarryYT]: https://www.youtube.com/channel/UCeVMnSShP_Iviwkknt83cww
-[NikhilMalankarYT]: https://www.youtube.com/channel/UC7rPccatXfcuLxiUPzm9AyQ
