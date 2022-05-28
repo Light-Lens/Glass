@@ -30,6 +30,6 @@ By the end of 2022, we want to make Glass capable of handling massive console ap
 ---
 
 ## License and Contributions
-All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
+All code is licensed under a MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
 
 We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the In-Dev branch, so we prefer to take pull requests there (particularly for new features).
