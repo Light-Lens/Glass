@@ -44,9 +44,9 @@ You need to install the following on your machine.
 By the end of 2022, we want to make Glass capable of handling massive console applications, not like a test program, but this time with proper Loops, Functions, Variables, Conditional statements and a bit more.
 
 ## License and Contributions
-All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
+All code is licensed under a MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
 
-We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the master branch, so we prefer to take pull requests there (particularly for new features).
+We welcome any contributions to Glass's development through pull requests on GitHub. Most of our active development is in the In-Dev branch, so we prefer to take pull requests there (particularly for new features).
 
 [CGlassReadme]: https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass
 [GlassOnTrello]: https://trello.com/b/xZ02JY5g/glass
