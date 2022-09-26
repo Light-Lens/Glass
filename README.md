@@ -48,5 +48,5 @@ All code is licensed under a MIT license. This allows you to re-use the code fre
 
 We welcome any contributions to Glass's development through pull requests on GitHub. Most of our active development is in the In-Dev branch, so we prefer to take pull requests there (particularly for new features).
 
-[CGlassReadme]: https://github.com/Light-Lens/Glass/blob/master/IDE/CGlass/CGlass.md#cglass
+[CGlassReadme]: IDE/CGlass/CGlass.md
 [GlassOnTrello]: https://trello.com/b/xZ02JY5g/glass
