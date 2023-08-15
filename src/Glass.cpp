@@ -83,12 +83,17 @@ void Lexer::Tokenizer()
     for (int i = 0; i < NonStringStr.size(); i++)
     {
         Lexemes += Strings::ToString(NonStringStr[i]);
-        if (Strings::Endswith(Lexemes, "//")) break;
+        if (Strings::Endswith(Lexemes, "//"))
+        {
+            Lexemes = "";
+            break;
+        }
+
         else if (Strings::Endswith(Lexemes, " "))
         {
             NoSpaceLexeme = Lexemes.substr(0, Lexemes.size() - 1);
             if (!Collections::String::IsEmpty(NoSpaceLexeme)) Toks.push_back(NoSpaceLexeme);
-            Toks.push_back(Strings::ToString(NonStringStr[i]));
+            Toks.push_back(" ");
             Lexemes = "";
         }
 
@@ -115,13 +120,13 @@ void Lexer::Tokenizer()
             Toks.push_back(Strings::ToString(NonStringStr[i]));
             Lexemes = "";
         }
-
-        if (i == NonStringStr.size() - 1 && !Collections::String::IsEmpty(Lexemes))
-        {
-            Toks.push_back(Lexemes);
-            Lexemes = "";
-        }
-
-        Tokens = Toks;
     }
+
+    if (!Collections::String::IsEmpty(Lexemes))
+    {
+        Toks.push_back(Lexemes);
+        Lexemes = "";
+    }
+
+    Tokens = Toks;
 }
