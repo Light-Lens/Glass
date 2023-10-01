@@ -1,14 +1,6 @@
 @ECHO OFF
-title Build C++
+TITLE Compile Glass
 
-if EXIST scripts (
-    cd scripts
-)
-
-call Link.py
-
-echo Locating Glass.exe
-echo Opening Glass in Folder
-
-cd ..\bin
-start .
+IF EXIST scripts ( CD scripts )
+CALL python Link.py %~1 %~2 %~3
+CD ..
