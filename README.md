@@ -3,9 +3,7 @@
 
 Glass is primarily an early-stage Programming Language written in C++ almost from scratch. It is inspired by Python and C#, so programmer coming from these languages may find some similarities. It is going to be a Powerful yet Easy to Learn Programming Language. Currently not much is implemented, however the progress for Glass is on a pretty good track.
 
-### ***Note: This branch contains the In-Dev version of Glass.***
-
----
+### ***Note: The In-Dev branch contains the new version of Glass.***
 
 ## Getting Started
 Visual Studio Code is recommended, Glass is officially untested on other development environments whilst we focus on a Windows build.
@@ -29,6 +27,6 @@ You need to install the following on your machine.
 - Visual Studio Code
 
 ## License and Contributions
-All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
+All code is licensed under a MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
 
 We welcome any contributions to Glass Programming Language development through pull requests on GitHub. Most of our active development is in the In-Dev branch, so we prefer to take pull requests there (particularly for new features).
